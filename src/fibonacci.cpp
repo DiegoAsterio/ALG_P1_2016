@@ -1,14 +1,10 @@
 /**
    @file C�lculo de la sucesi�n de Fibonacci
 */
-
-
 #include <iostream>
 using namespace std;
 #include <ctime>
 #include <chrono>
-
-
 /**
    @brief Calcula el t�rmino n-�simo de la sucesi�n de Fibonacci.
 
@@ -26,7 +22,6 @@ int fibo(int n)
   else
     return fibo(n-1) + fibo(n-2);
 }
-
 
 int main(int argc, char* argv[])
 {
