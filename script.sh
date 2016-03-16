@@ -1,7 +1,7 @@
 #!/bin/bash
 #Burbuja
 
-i=10000
+i=1000
 echo -e "Ejecutando burbuja con tamaño maximo 30.000 a saltos de 1.000"
 sleep 3
 while [ $i -le 30000 ]

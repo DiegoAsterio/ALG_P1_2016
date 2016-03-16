@@ -2,7 +2,6 @@
 
 import os
 import sys
-import re
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -27,8 +26,8 @@ for filename in os.listdir(path):
     title = filename.replace(".dat","")
 
     ax1.set_title(title)
-    ax1.set_xlabel('Tiempo')
-    ax1.set_ylabel('Ejecuciones')
+    ax1.set_xlabel('Ejecuciones')
+    ax1.set_ylabel('Tiempo')
 
     ax1.plot(x,y, c='r', label=title)
 
