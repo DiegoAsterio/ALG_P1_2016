@@ -47,9 +47,9 @@ done
 ############################FIBONACCI############################################
 g++ -std=c++11 ./src/fibonacci.cpp -o ./bin/fibonacci
 i=1
-echo -e "Ejecutando fibonacci con tamaño maximo 45 a saltos de 1 sin optimizacion"
+echo -e "Ejecutando fibonacci con tamaño maximo 25 a saltos de 1 sin optimizacion"
 sleep 3
-while [ $i -le 45 ]
+while [ $i -le 25 ]
 do
   ./bin/fibonacci $i >> ./data/$1/fibonacciO0.dat
   echo -e "Iteración $i"
@@ -58,9 +58,9 @@ done
 
 g++ -O1 -std=c++11 ./src/fibonacci.cpp -o ./bin/fibonacci
 i=1
-echo -e "Ejecutando fibonacci con tamaño maximo 45 a saltos de 1 con optimizacion O1"
+echo -e "Ejecutando fibonacci con tamaño maximo 25 a saltos de 1 con optimizacion O1"
 sleep 3
-while [ $i -le 45 ]
+while [ $i -le 25 ]
 do
   ./bin/fibonacci $i >> ./data/$1/fibonacciO1.dat
   echo -e "Iteración $i"
@@ -69,9 +69,9 @@ done
 
 g++ -O2 -std=c++11 ./src/fibonacci.cpp -o ./bin/fibonacci
 i=1
-echo -e "Ejecutando fibonacci con tamaño maximo 45 a saltos de 1 con optimizacion O2"
+echo -e "Ejecutando fibonacci con tamaño maximo 25 a saltos de 1 con optimizacion O2"
 sleep 3
-while [ $i -le 45 ]
+while [ $i -le 25 ]
 do
   ./bin/fibonacci $i >> ./data/$1/fibonacciO2.dat
   echo -e "Iteración $i"
@@ -80,9 +80,9 @@ done
 
 g++ -O3 -std=c++11 ./src/fibonacci.cpp -o ./bin/fibonacci
 i=1
-echo -e "Ejecutando fibonacci con tamaño maximo 45 a saltos de 1 con optimizacion O3"
+echo -e "Ejecutando fibonacci con tamaño maximo 25 a saltos de 1 con optimizacion O3"
 sleep 3
-while [ $i -le 45 ]
+while [ $i -le 25 ]
 do
   ./bin/fibonacci $i >> ./data/$1/fibonacciO3.dat
   echo -e "Iteración $i"
