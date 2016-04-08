@@ -1,7 +1,7 @@
 
 
 *******************************************************************************
-Fri Apr  8 10:36:28 2016
+Fri Apr  8 09:18:57 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -25,18 +25,18 @@ l0              = 1
 l1              = 1
 
 After 9 iterations the fit converged.
-final sum of squares of residuals : 0.00996379
-rel. change during last iteration : -5.21529e-08
+final sum of squares of residuals : 0.0113882
+rel. change during last iteration : -4.56534e-08
 
 degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00579207
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.35481e-05
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00619225
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.8344e-05
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-l0              = 4.5738e-08       +/- 3.881e-10    (0.8485%)
-l1              = -0.000707485     +/- 0.0006716    (94.93%)
+l0              = 4.56572e-08      +/- 4.149e-10    (0.9087%)
+l1              = -0.000963943     +/- 0.000718     (74.49%)
 
 
 correlation matrix of the fit parameters:
@@ -47,7 +47,7 @@ l1             -0.867  1.000
 
 
 *******************************************************************************
-Fri Apr  8 10:36:28 2016
+Fri Apr  8 09:18:57 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -63,37 +63,40 @@ fitted parameters initialized with current variable values
  Iteration 0
  WSSR        : 1.9044e+17        delta(WSSR)/WSSR   : 0
  delta(WSSR) : 0                 limit for stopping : 1e-05
- lambda	  : 1.78873e+07
+ lambda	  : 1.4605e+07
 
 initial set of free parameter values
 
 n0              = 1
 n1              = 1
+n2              = 1
 
 After 4 iterations the fit converged.
-final sum of squares of residuals : 0.010522
-rel. change during last iteration : -6.09893e-09
+final sum of squares of residuals : 79.2958
+rel. change during last iteration : -7.46451e-07
 
-degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00595211
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.54276e-05
+degrees of freedom    (FIT_NDF)                        : 296
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.517582
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.267891
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-n0              = 3.12676e-09      +/- 5.967e-10    (19.08%)
-n1              = 0.932009         +/- 2.583        (277.1%)
+n0              = -3.09927e-08     +/- 1.048e-07    (338.2%)
+n1              = 0.932021         +/- 47.35        (5081%)
+n2              = 1                +/- 0.1212       (12.12%)
 
 
 correlation matrix of the fit parameters:
 
-               n0     n1     
+               n0     n1     n2     
 n0              1.000 
-n1             -1.000  1.000 
+n1              1.000  1.000 
+n2              0.869  0.878  1.000 
 
 
 *******************************************************************************
-Fri Apr  8 10:36:28 2016
+Fri Apr  8 09:18:57 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -107,7 +110,7 @@ fitted parameters initialized with current variable values
 
 
  Iteration 0
- WSSR        : 66243.2           delta(WSSR)/WSSR   : 0
+ WSSR        : 66246.6           delta(WSSR)/WSSR   : 0
  delta(WSSR) : 0                 limit for stopping : 1e-05
  lambda	  : 8.09915
 
@@ -118,31 +121,31 @@ t1              = 1
 t2              = 1
 
 After 5 iterations the fit converged.
-final sum of squares of residuals : 0.114503
-rel. change during last iteration : -4.08446e-13
+final sum of squares of residuals : 0.11479
+rel. change during last iteration : -4.06577e-13
 
 degrees of freedom    (FIT_NDF)                        : 296
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0196681
-variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000386834
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0196927
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000387804
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-t0              = 0.0360738        +/- 0.00118      (3.272%)
-t1              = 0.946815         +/- 2.233e+10    (2.359e+12%)
-t2              = -0.432399        +/- 8.505e+08    (1.967e+11%)
+t0              = 0.0360485        +/- 0.001182     (3.278%)
+t1              = 0.946852         +/- 2.313e+10    (2.443e+12%)
+t2              = -0.432427        +/- 8.801e+08    (2.035e+11%)
 
 
 correlation matrix of the fit parameters:
 
                t0     t1     t2     
 t0              1.000 
-t1              0.016  1.000 
-t2             -0.016 -1.000  1.000 
+t1              0.011  1.000 
+t2             -0.011 -1.000  1.000 
 
 
 *******************************************************************************
-Fri Apr  8 10:38:50 2016
+Fri Apr  8 09:19:21 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -166,18 +169,18 @@ l0              = 1
 l1              = 1
 
 After 9 iterations the fit converged.
-final sum of squares of residuals : 0.00996379
-rel. change during last iteration : -5.21529e-08
+final sum of squares of residuals : 0.0113882
+rel. change during last iteration : -4.56534e-08
 
 degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00579207
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.35481e-05
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00619225
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.8344e-05
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-l0              = 4.5738e-08       +/- 3.881e-10    (0.8485%)
-l1              = -0.000707485     +/- 0.0006716    (94.93%)
+l0              = 4.56572e-08      +/- 4.149e-10    (0.9087%)
+l1              = -0.000963943     +/- 0.000718     (74.49%)
 
 
 correlation matrix of the fit parameters:
@@ -188,7 +191,7 @@ l1             -0.867  1.000
 
 
 *******************************************************************************
-Fri Apr  8 10:38:50 2016
+Fri Apr  8 09:19:21 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -212,18 +215,18 @@ n0              = 1
 n1              = 1
 
 After 4 iterations the fit converged.
-final sum of squares of residuals : 0.010522
-rel. change during last iteration : -6.09893e-09
+final sum of squares of residuals : 0.0119573
+rel. change during last iteration : -5.36683e-09
 
 degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00595211
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.54276e-05
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00634511
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.02604e-05
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-n0              = 3.12676e-09      +/- 5.967e-10    (19.08%)
-n1              = 0.932009         +/- 2.583        (277.1%)
+n0              = 3.11236e-09      +/- 6.361e-10    (20.44%)
+n1              = 0.932009         +/- 2.766        (296.8%)
 
 
 correlation matrix of the fit parameters:
@@ -234,7 +237,7 @@ n1             -1.000  1.000
 
 
 *******************************************************************************
-Fri Apr  8 10:38:50 2016
+Fri Apr  8 09:19:21 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -248,7 +251,7 @@ fitted parameters initialized with current variable values
 
 
  Iteration 0
- WSSR        : 66243.2           delta(WSSR)/WSSR   : 0
+ WSSR        : 66246.6           delta(WSSR)/WSSR   : 0
  delta(WSSR) : 0                 limit for stopping : 1e-05
  lambda	  : 8.09915
 
@@ -259,31 +262,31 @@ t1              = 1
 t2              = 1
 
 After 5 iterations the fit converged.
-final sum of squares of residuals : 0.114503
-rel. change during last iteration : -4.08446e-13
+final sum of squares of residuals : 0.11479
+rel. change during last iteration : -4.06577e-13
 
 degrees of freedom    (FIT_NDF)                        : 296
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0196681
-variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000386834
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0196927
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000387804
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-t0              = 0.0360738        +/- 0.00118      (3.272%)
-t1              = 0.946815         +/- 2.233e+10    (2.359e+12%)
-t2              = -0.432399        +/- 8.505e+08    (1.967e+11%)
+t0              = 0.0360485        +/- 0.001182     (3.278%)
+t1              = 0.946852         +/- 2.313e+10    (2.443e+12%)
+t2              = -0.432427        +/- 8.801e+08    (2.035e+11%)
 
 
 correlation matrix of the fit parameters:
 
                t0     t1     t2     
 t0              1.000 
-t1              0.016  1.000 
-t2             -0.016 -1.000  1.000 
+t1              0.011  1.000 
+t2             -0.011 -1.000  1.000 
 
 
 *******************************************************************************
-Fri Apr  8 10:39:16 2016
+Fri Apr  8 10:27:49 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -307,18 +310,18 @@ l0              = 1
 l1              = 1
 
 After 9 iterations the fit converged.
-final sum of squares of residuals : 0.00996379
-rel. change during last iteration : -5.21529e-08
+final sum of squares of residuals : 0.0111776
+rel. change during last iteration : -4.63809e-08
 
 degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00579207
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.35481e-05
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00613475
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.76351e-05
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-l0              = 4.5738e-08       +/- 3.881e-10    (0.8485%)
-l1              = -0.000707485     +/- 0.0006716    (94.93%)
+l0              = 4.46021e-08      +/- 4.11e-10     (0.9216%)
+l1              = 0.000460622      +/- 0.0007113    (154.4%)
 
 
 correlation matrix of the fit parameters:
@@ -329,7 +332,7 @@ l1             -0.867  1.000
 
 
 *******************************************************************************
-Fri Apr  8 10:39:16 2016
+Fri Apr  8 10:27:49 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -353,18 +356,18 @@ n0              = 1
 n1              = 1
 
 After 4 iterations the fit converged.
-final sum of squares of residuals : 0.010522
-rel. change during last iteration : -6.09893e-09
+final sum of squares of residuals : 0.0127834
+rel. change during last iteration : -5.02002e-09
 
 degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00595211
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.54276e-05
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00656062
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.30418e-05
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-n0              = 3.12676e-09      +/- 5.967e-10    (19.08%)
-n1              = 0.932009         +/- 2.583        (277.1%)
+n0              = 3.08788e-09      +/- 6.577e-10    (21.3%)
+n1              = 0.932009         +/- 2.882        (309.3%)
 
 
 correlation matrix of the fit parameters:
@@ -375,7 +378,7 @@ n1             -1.000  1.000
 
 
 *******************************************************************************
-Fri Apr  8 10:39:16 2016
+Fri Apr  8 10:27:49 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -389,7 +392,7 @@ fitted parameters initialized with current variable values
 
 
  Iteration 0
- WSSR        : 66243.2           delta(WSSR)/WSSR   : 0
+ WSSR        : 66248.2           delta(WSSR)/WSSR   : 0
  delta(WSSR) : 0                 limit for stopping : 1e-05
  lambda	  : 8.09915
 
@@ -400,31 +403,31 @@ t1              = 1
 t2              = 1
 
 After 5 iterations the fit converged.
-final sum of squares of residuals : 0.114503
-rel. change during last iteration : -4.08446e-13
+final sum of squares of residuals : 0.103967
+rel. change during last iteration : -4.31147e-13
 
 degrees of freedom    (FIT_NDF)                        : 296
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0196681
-variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000386834
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0187414
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000351241
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-t0              = 0.0360738        +/- 0.00118      (3.272%)
-t1              = 0.946815         +/- 2.233e+10    (2.359e+12%)
-t2              = -0.432399        +/- 8.505e+08    (1.967e+11%)
+t0              = 0.0355151        +/- 0.001126     (3.169%)
+t1              = 0.946934         +/- 2.235e+10    (2.36e+12%)
+t2              = -0.425191        +/- 8.377e+08    (1.97e+11%)
 
 
 correlation matrix of the fit parameters:
 
                t0     t1     t2     
 t0              1.000 
-t1              0.016  1.000 
-t2             -0.016 -1.000  1.000 
+t1             -0.044  1.000 
+t2              0.044 -1.000  1.000 
 
 
 *******************************************************************************
-Fri Apr  8 10:39:33 2016
+Fri Apr  8 10:34:56 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -448,18 +451,18 @@ l0              = 1
 l1              = 1
 
 After 9 iterations the fit converged.
-final sum of squares of residuals : 0.00996379
-rel. change during last iteration : -5.21529e-08
+final sum of squares of residuals : 0.011683
+rel. change during last iteration : -4.45193e-08
 
 degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00579207
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.35481e-05
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0062719
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.93367e-05
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-l0              = 4.5738e-08       +/- 3.881e-10    (0.8485%)
-l1              = -0.000707485     +/- 0.0006716    (94.93%)
+l0              = 4.62775e-08      +/- 4.202e-10    (0.9081%)
+l1              = -0.00116795      +/- 0.0007272    (62.27%)
 
 
 correlation matrix of the fit parameters:
@@ -470,7 +473,7 @@ l1             -0.867  1.000
 
 
 *******************************************************************************
-Fri Apr  8 10:39:33 2016
+Fri Apr  8 10:34:56 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -494,18 +497,18 @@ n0              = 1
 n1              = 1
 
 After 4 iterations the fit converged.
-final sum of squares of residuals : 0.010522
-rel. change during last iteration : -6.09893e-09
+final sum of squares of residuals : 0.0119924
+rel. change during last iteration : -5.35112e-09
 
 degrees of freedom    (FIT_NDF)                        : 297
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00595211
-variance of residuals (reduced chisquare) = WSSR/ndf   : 3.54276e-05
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00635441
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.03785e-05
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-n0              = 3.12676e-09      +/- 5.967e-10    (19.08%)
-n1              = 0.932009         +/- 2.583        (277.1%)
+n0              = 3.14831e-09      +/- 6.37e-10     (20.23%)
+n1              = 0.932009         +/- 2.738        (293.8%)
 
 
 correlation matrix of the fit parameters:
@@ -516,7 +519,7 @@ n1             -1.000  1.000
 
 
 *******************************************************************************
-Fri Apr  8 10:39:33 2016
+Fri Apr  8 10:34:56 2016
 
 
 FIT:    data read from "./data/datos_algoritmo_nacho.dat"
@@ -530,7 +533,7 @@ fitted parameters initialized with current variable values
 
 
  Iteration 0
- WSSR        : 66243.2           delta(WSSR)/WSSR   : 0
+ WSSR        : 66239.9           delta(WSSR)/WSSR   : 0
  delta(WSSR) : 0                 limit for stopping : 1e-05
  lambda	  : 8.09915
 
@@ -541,24 +544,24 @@ t1              = 1
 t2              = 1
 
 After 5 iterations the fit converged.
-final sum of squares of residuals : 0.114503
-rel. change during last iteration : -4.08446e-13
+final sum of squares of residuals : 0.12027
+rel. change during last iteration : -3.97051e-13
 
 degrees of freedom    (FIT_NDF)                        : 296
-rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0196681
-variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000386834
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0201573
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000406319
 
 Final set of parameters            Asymptotic Standard Error
 =======================            ==========================
 
-t0              = 0.0360738        +/- 0.00118      (3.272%)
-t1              = 0.946815         +/- 2.233e+10    (2.359e+12%)
-t2              = -0.432399        +/- 8.505e+08    (1.967e+11%)
+t0              = 0.036422         +/- 0.001212     (3.327%)
+t1              = 0.946738         +/- 2.922e+10    (3.087e+12%)
+t2              = -0.436876        +/- 1.124e+09    (2.572e+11%)
 
 
 correlation matrix of the fit parameters:
 
                t0     t1     t2     
 t0              1.000 
-t1              0.016  1.000 
-t2             -0.016 -1.000  1.000 
+t1             -0.062  1.000 
+t2              0.062 -1.000  1.000 

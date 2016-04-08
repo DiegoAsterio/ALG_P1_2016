@@ -6,3 +6,5 @@ do
   echo -e "Iteración número ---> $i"
   ./bin/ejercicio6_nacho $i >> ./data/datos_algoritmo_nacho.dat
 done
+
+gnuplot ./grafica_nacho.gp

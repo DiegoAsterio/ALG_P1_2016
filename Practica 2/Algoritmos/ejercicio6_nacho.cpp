@@ -36,6 +36,15 @@ int& buscaPuntoDeCambio(vector<int> v, int indice1, int indice2, int& res)
 
 }
 
+double uniforme()
+{
+double u;
+  u = (double) rand();
+  u = u/(double)(RAND_MAX+1.0);
+ return u;
+}
+
+
 using namespace std::chrono;
 
 int main(int argc, char* argv[])
@@ -46,6 +55,7 @@ int main(int argc, char* argv[])
     cout << "Falta el numero de componentes.\n";
     exit(1);
   }
+  /*
   vector<int> v;
   int N=atoi(argv[1]);
   srand(time(NULL));
@@ -74,10 +84,27 @@ int main(int argc, char* argv[])
       v.push_back(random);
     }
   }
+  */
+
+
+  int n = atoi(argv[1]);
+
+  int * T = new int[n];
+  assert(T);
+
+  srand(time(0));
+  double u=uniforme();
+  int p=1+(int)((n-2)*u);
+  T[p]=n-1;
+  for (int i=0; i<p; i++) T[i]=i;
+  for (int i=p+1; i<n; i++) T[i]=n-1-i+p;
+
+  //for (int j=0; j<n; j++) {cout << T[j] << " ";}
+
 
   int res=0;
   t1=high_resolution_clock::now();
-  buscaPuntoDeCambio(v,0,N-1, res);
+  buscaPuntoDeCambio(T,0,n-1, res);
   t2=high_resolution_clock::now();
   int punto_cambio=res;
   duration<double> transcurrido = duration_cast<duration<double> >(t2-t1);
