@@ -4,6 +4,7 @@ using namespace std;
 #include <cstdlib>
 #include <climits>
 #include <cassert>
+#include <chrono>
 
 //generador de ejemplos para el problema de la comparaci�n de preferencias. Simplemente se genera una permutaci�n aleatoria del vector 0,1,2,...,n-2,n-1
 
@@ -29,8 +30,12 @@ int CuentaIntercambios(int* v, int tam)
   return inter;
 }
 
+using namespace std::chrono;
+
+
 int main(int argc, char * argv[])
 {
+  high_resolution_clock::time_point t1, t2;
 
   if (argc != 2)
     {
@@ -54,11 +59,14 @@ int main(int argc, char * argv[])
      T[j]=T[k];
      T[k]=tmp;
   }
-  for (int j=0; j<n; j++) {cout << T[j] << " ";}
-  cout << endl;
+  //for (int j=0; j<n; j++) {cout << T[j] << " ";}
+  //cout << endl;
 
+  t1=high_resolution_clock::now();
   int valor = CuentaIntercambios(T,n);
-  cout << n << " " << valor << endl;
+  t2=high_resolution_clock::now();
+  duration<double> transcurrido = duration_cast<duration<double> >(t2-t1);
+  cout << n << " " << transcurrido.count() << endl;
 
 
 }
