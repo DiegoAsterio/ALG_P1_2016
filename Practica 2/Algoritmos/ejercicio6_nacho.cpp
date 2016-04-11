@@ -10,7 +10,7 @@
 using namespace std;
 
 
-int& buscaPuntoDeCambio(vector<int> v, int indice1, int indice2, int& res)
+int& buscaPuntoDeCambio(int* v, int indice1, int indice2, int& res)
 {
   int indi=(indice1+indice2)/2;
   if(v[indice1]>v[indice1+1])
@@ -86,7 +86,6 @@ int main(int argc, char* argv[])
   }
   */
 
-
   int n = atoi(argv[1]);
 
   int * T = new int[n];
@@ -108,7 +107,7 @@ int main(int argc, char* argv[])
   t2=high_resolution_clock::now();
   int punto_cambio=res;
   duration<double> transcurrido = duration_cast<duration<double> >(t2-t1);
-  cout << N << " " << transcurrido.count() << "\n";
+  cout << n << " " << transcurrido.count() << "\n";
 
   return 0;
 }

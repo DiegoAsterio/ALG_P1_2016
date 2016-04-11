@@ -6,7 +6,6 @@ fit lineal(x) "./data/datos_algoritmo_nacho.dat" via l0,l1
 fit nlogaritmica(x) "./data/datos_algoritmo_nacho.dat" via n0,n1
 fit logaritmica(x) "./data/datos_algoritmo_nacho.dat" via t0,t1,t2
 
-set key bottom
 plot "./data/datos_algoritmo_nacho.dat", lineal(x), nlogaritmica(x), logaritmica(x)
 
 set term png
