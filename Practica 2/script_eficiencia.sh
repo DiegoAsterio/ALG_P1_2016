@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir ./data/$1
+
 g++ -std=c++11 ./Algoritmos/ejercicio6_nacho.cpp -o ./bin/unimodal_solucion1
 rm -f ./data/$1/datos_solucion1_$1.dat
 for (( i = 1; i <= 3000001; i+=10000 ))
