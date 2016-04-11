@@ -19,15 +19,20 @@ double uniforme() //Genera un n�mero uniformemente distribuido en el
 
 int CuentaIntercambios(int* v, int tam)
 {
-  int inter=0, i=0, j=tam-1;
-  while(i<j)
+  int inter=0;
+  for(int i=0;i<tam;i++)
   {
-    if(v[i]>v[j])
-      inter++;
-    i++;
-    j--;
+    for(j = i; j < tam;j++)
+    {
+      if(v[i]<v[j])
+      {
+        int aux=v[i];
+        v[i] = v[j];
+        v[j] = aux;
+        inter++;
+      }
+    }
   }
-  return inter;
 }
 
 using namespace std::chrono;
