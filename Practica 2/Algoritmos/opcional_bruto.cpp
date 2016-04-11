@@ -16,6 +16,15 @@ double uniforme() //Genera un n�mero uniformemente distribuido en el
  return (double)t/f;
 }
 
+int CuentaIntercambios(int* v, int tam)
+{
+  int inter=0;
+  for(int i = 0; i < tam;i++)
+  {
+    if(v[i]<i+1)
+  }
+}
+
 int main(int argc, char * argv[])
 {
 
@@ -43,7 +52,6 @@ for (int j=n-1; j>0; j--) {
    T[k]=tmp;
 }
 
-for (int j=0; j<n; j++) {cout << T[j] << " ";}
-cout << endl;
+
 
 }
