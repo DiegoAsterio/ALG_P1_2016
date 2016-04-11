@@ -7,4 +7,4 @@ do
   ./bin/genera-unimodal_secuencial $i >> ./data/datos_algoritmo_luis.dat
 done
 
-gnuplot ./grafica_luis.gp
+gnuplot ./grafica_Luis.gp
