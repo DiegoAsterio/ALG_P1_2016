@@ -18,11 +18,15 @@ double uniforme() //Genera un n�mero uniformemente distribuido en el
 
 int CuentaIntercambios(int* v, int tam)
 {
-  int inter=0;
-  for(int i = 0; i < tam;i++)
+  int inter=0, i=0, j=tam-1;
+  while(i<j)
   {
-    if(v[i]<i+1)
+    if(v[i]>v[j])
+      inter++;
+    i++;
+    j--;
   }
+  return inter;
 }
 
 int main(int argc, char * argv[])
@@ -39,19 +43,22 @@ int main(int argc, char * argv[])
   int * T = new int[n];
   assert(T);
 
-srand(time(0));
+  srand(time(0));
 
-for (int j=0; j<n; j++) T[j]=j;
-//for (int j=0; j<n; j++) {cout << T[j] << " ";}
-//algoritmo de random shuffling the Knuth (permutaci�n aleatoria)
-for (int j=n-1; j>0; j--) {
-   double u=uniforme();
-   int k=(int)(j*u);
-   int tmp=T[j];
-   T[j]=T[k];
-   T[k]=tmp;
-}
+  for (int j=0; j<n; j++) T[j]=j;
+  //algoritmo de random shuffling the Knuth (permutaci�n aleatoria)
+  for (int j=n-1; j>0; j--) {
+     double u=uniforme();
+     int k=(int)(j*u);
+     int tmp=T[j];
+     T[j]=T[k];
+     T[k]=tmp;
+  }
+  for (int j=0; j<n; j++) {cout << T[j] << " ";}
+  cout << endl;
 
+  int valor = CuentaIntercambios(T,n);
+  cout << n << " " << valor << endl;
 
 
 }
