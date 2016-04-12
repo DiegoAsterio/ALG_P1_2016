@@ -39,7 +39,7 @@ fit lineal(x) "./data/Luis/datos_genera_unimodal_secuencial_Luis.dat" via l0,l1
 fit nlogaritmica(x) "./data/Luis/datos_genera_unimodal_secuencial_Luis.dat" via n0,n1
 fit logaritmica(x) "./data/Luis/datos_genera_unimodal_secuencial_Luis.dat" via t0,t1,t2
 
-plot "./data/Luis/datos_genera_unimodal_secuencial_Luis.dat", lineal(x), nlogaritmica(x), logaritmica(x)
+plot "./data/Luis/datos_genera_unimodal_secuencial_Luis.dat", nlogaritmica(x), logaritmica(x)
 
 set term png
 set output "./grphx/Luis/genera_unimodal_secuencial_Luis.png"

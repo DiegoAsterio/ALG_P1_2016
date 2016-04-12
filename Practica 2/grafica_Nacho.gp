@@ -39,7 +39,7 @@ fit lineal(x) "./data/Nacho/datos_genera_unimodal_secuencial_Nacho.dat" via l0,l
 fit nlogaritmica(x) "./data/Nacho/datos_genera_unimodal_secuencial_Nacho.dat" via n0,n1
 fit logaritmica(x) "./data/Nacho/datos_genera_unimodal_secuencial_Nacho.dat" via t0,t1,t2
 
-plot "./data/Nacho/datos_genera_unimodal_secuencial_Nacho.dat", lineal(x), nlogaritmica(x), logaritmica(x)
+plot "./data/Nacho/datos_genera_unimodal_secuencial_Nacho.dat", nlogaritmica(x), logaritmica(x)
 
 set term png
 set output "./grphx/Nacho/genera_unimodal_secuencial_Nacho.png"
