@@ -22,7 +22,7 @@ int CuentaIntercambios(int* v, int tam)
   int inter=0;
   for(int i=0;i<tam;i++)
   {
-    for(j = i; j < tam;j++)
+    for(int j = i; j < tam;j++)
     {
       if(v[i]<v[j])
       {
