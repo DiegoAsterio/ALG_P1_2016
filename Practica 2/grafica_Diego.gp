@@ -35,13 +35,13 @@ lineal(x) = l0*x + l1
 nlogaritmica(x) = n0*x*log(n1*x)
 logaritmica(x) = t0*log(t1*x) + t2
 
-fit lineal(x) "./data/Diego/datos_genera_unimodal_secuencial_Diego.dat" via l0,l1
-fit nlogaritmica(x) "./data/Diego/genera_unimodal_secuencial_bruto_Diego.dat" via n0,n1
-fit logaritmica(x) "./data/Diego/genera_unimodal_secuencial_bruto_Diego.dat" via t0,t1,t2
+fit lineal(x) "./data/Diego/datos_opcional_dyv_Diego.dat" via l0,l1
+fit nlogaritmica(x) "./data/Diego/opcional_dyv_bruto_Diego.dat" via n0,n1
+fit logaritmica(x) "./data/Diego/opcional_dyv_bruto_Diego.dat" via t0,t1,t2
 
-plot "./data/Diego/datos_genera_unimodal_secuencial_Diego.dat", lineal(x), nlogaritmica(x), logaritmica(x)
+plot "./data/Diego/datos_opcional_dyv_Diego.dat", lineal(x), nlogaritmica(x), logaritmica(x)
 
 set term png
-set output "./grphx/Diego/genera_unimodal_secuencial_Diego.png"
+set output "./grphx/Diego/opcional_dyv_Diego.png"
 replot
 set term x11
