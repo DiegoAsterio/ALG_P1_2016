@@ -5899,3 +5899,313 @@ correlation matrix of the fit parameters:
 t0              1.000 
 t1             -0.103  1.000 
 t2              0.103 -1.000  1.000 
+
+
+*******************************************************************************
+Tue Apr 12 19:06:38 2016
+
+
+FIT:    data read from "./data/Diego/datos_solucion1_Diego.dat"
+        format = z
+        #datapoints = 300
+        residuals are weighted equally (unit weight)
+
+function used for fitting: lineal(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 9.04507e+14       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 1.22781e+06
+
+initial set of free parameter values
+
+l0              = 1
+l1              = 1
+
+After 10 iterations the fit converged.
+final sum of squares of residuals : 1.81413e-10
+rel. change during last iteration : -1.18911e-11
+
+degrees of freedom    (FIT_NDF)                        : 298
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 7.80237e-07
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.0877e-13
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+l0              = 4.68255e-13      +/- 5.202e-14    (11.11%)
+l1              = 1.12131e-06      +/- 9.032e-08    (8.055%)
+
+
+correlation matrix of the fit parameters:
+
+               l0     l1     
+l0              1.000 
+l1             -0.867  1.000 
+
+
+*******************************************************************************
+Tue Apr 12 19:06:38 2016
+
+
+FIT:    data read from "./data/Diego/datos_solucion1_Diego.dat"
+        format = z
+        #datapoints = 300
+        residuals are weighted equally (unit weight)
+
+function used for fitting: nlogaritmica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.92442e+17       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 1.79511e+07
+
+initial set of free parameter values
+
+n0              = 1
+n1              = 1
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 2.89757e-10
+rel. change during last iteration : -7.13685e-16
+
+degrees of freedom    (FIT_NDF)                        : 298
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.86072e-07
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.72339e-13
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+n0              = 7.02778e-14      +/- 9.836e-14    (140%)
+n1              = 0.932024         +/- 18.95        (2033%)
+
+
+correlation matrix of the fit parameters:
+
+               n0     n1     
+n0              1.000 
+n1             -1.000  1.000 
+
+
+*******************************************************************************
+Tue Apr 12 19:06:38 2016
+
+
+FIT:    data read from "./data/Diego/datos_solucion1_Diego.dat"
+        format = z
+        #datapoints = 300
+        residuals are weighted equally (unit weight)
+
+function used for fitting: logaritmica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 67120.6           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 8.10105
+
+initial set of free parameter values
+
+t0              = 1
+t1              = 1
+t2              = 1
+
+After 6 iterations the fit converged.
+final sum of squares of residuals : 1.76447e-10
+rel. change during last iteration : -1.46499e-16
+
+degrees of freedom    (FIT_NDF)                        : 297
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 7.70778e-07
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.94099e-13
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+t0              = 4.41369e-07      +/- 4.62e-08     (10.47%)
+t1              = 0.951908         +/- 1.457e+11    (1.53e+13%)
+t2              = -4.29903e-06     +/- 6.751e+04    (1.57e+12%)
+
+
+correlation matrix of the fit parameters:
+
+               t0     t1     t2     
+t0              1.000 
+t1              0.037  1.000 
+t2             -0.037 -1.000  1.000 
+
+
+*******************************************************************************
+Tue Apr 12 19:06:38 2016
+
+
+FIT:    data read from "./data/Diego/datos_opcional_bruto_Diego.dat"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: lineal(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 103.975           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 20917.1
+
+initial set of free parameter values
+
+l0              = 4.68255e-13
+l1              = 1.12131e-06
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 3.76724
+rel. change during last iteration : -9.87497e-13
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.646979
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.418582
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+l0              = 0.000128619      +/- 1.234e-05    (9.592%)
+l1              = -0.985348        +/- 0.365        (37.04%)
+
+
+correlation matrix of the fit parameters:
+
+               l0     l1     
+l0              1.000 
+l1             -0.845  1.000 
+
+
+*******************************************************************************
+Tue Apr 12 19:06:38 2016
+
+
+FIT:    data read from "./data/Diego/datos_opcional_bruto_Diego.dat"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: nlogaritmica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 103.975           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 218966
+
+initial set of free parameter values
+
+n0              = 7.02778e-14
+n1              = 0.932024
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5.33235
+rel. change during last iteration : -7.61693e-09
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.769729
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.592483
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+n0              = 9.67039e-06      +/- 2.367e-05    (244.8%)
+n1              = 0.932024         +/- 23.89        (2564%)
+
+
+correlation matrix of the fit parameters:
+
+               n0     n1     
+n0              1.000 
+n1             -0.999  1.000 
+
+
+*******************************************************************************
+Tue Apr 12 19:06:38 2016
+
+
+FIT:    data read from "./data/Diego/datos_opcional_bruto_Diego.dat"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: logaritmica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 103.975           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 5.53645
+
+initial set of free parameter values
+
+t0              = 4.41369e-07
+t1              = 0.951908
+t2              = -4.29903e-06
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 36.6197
+rel. change during last iteration : -4.54334e-06
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.1395
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.57746
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+t0              = 0.362399         +/- 0.2212       (61.03%)
+t1              = 0.679824         +/- 1.73e+12     (2.544e+14%)
+t2              = -0.93354         +/- 9.216e+11    (9.872e+13%)
+
+
+correlation matrix of the fit parameters:
+
+               t0     t1     t2     
+t0              1.000 
+t1             -0.166  1.000 
+t2              0.166 -1.000  1.000 
+
+
+*******************************************************************************
+Tue Apr 12 19:06:38 2016
+
+
+FIT:    data read from "./data/Diego/datos_opcional_bruto_Diego.dat"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: logaritmica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 36.6197           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 0
+
+initial set of free parameter values
+
+c0              = 1
+c1              = 1
+c2              = 1
+BREAK:          Singular matrix in Givens()
+
