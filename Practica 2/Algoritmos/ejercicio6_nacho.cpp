@@ -45,11 +45,10 @@ double u;
 }
 
 
-using namespace std::chrono;
+using namespace std;
 
 int main(int argc, char* argv[])
 {
-  high_resolution_clock::time_point t1, t2;
   if(argc<2)
   {
     cout << "Falta el numero de componentes.\n";
