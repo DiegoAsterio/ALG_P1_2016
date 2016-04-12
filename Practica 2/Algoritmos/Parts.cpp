@@ -4,7 +4,7 @@ using namespace std;
 #include <cstdlib>
 #include <climits>
 #include <cassert>
-#include <mach/mach_time.h>
+//#include <mach/mach_time.h>
 #include <cstdio>
 #include <chrono>
 
@@ -51,7 +51,7 @@ int main(int argc, char * argv[])
   int * T = new int[n];
   assert(T);
 
-  srand(mach_absolute_time());
+  srand(time(0));
   double u=uniforme();
   int p=1+(int)((n-2)*u);
   T[p]=n-1;
