@@ -1,0 +1,7 @@
+El archivo ejercicio6_nacho.cpp corresponde con la primera solución DyV para el ejercicio de unimodales.
+El archivo genera_unimodal_secuencial.cpp corresponde con la solución evidente del ejercicio de unimodales.
+El archivo Parts.cpp corresponde con la segunda solución DyV del ejercicio de unimodales.
+El archivo opcional_bruto.cpp corresponde con la solución evidente del ejercicio opcional.
+El archivo opcional_dyv.cpp corresponde con la solución DyV del ejercicio opcional.
+
+El resto de archivos los hemos usado para obtener los datos y para representar los mismos.
