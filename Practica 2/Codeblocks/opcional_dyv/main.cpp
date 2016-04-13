@@ -49,8 +49,9 @@ static void mergesort_lims(int T[], int inicial, int fin)
     if(k!=0)
     {
       mergesort_lims(U, 0, k);
-      mergesort_lims(V, 0, fin - k);
     }
+    if(fin>1)
+      mergesort_lims(V, 0, fin - k);
     fusion(T, inicial, fin, U, V);
     delete [] U;
     delete [] V;
@@ -65,12 +66,15 @@ static void fusion(int T[], int inicial, int fin, int U[], int V[])
     {
       if (U[j] < V[k]) {
 	       //T[i] = U[j];
-	        j++;
-          contador++;
+          j++;
+          if(k<j)
+            contador++;
       }
       else{
 	       //T[i] = V[k];
-	        k++;
+          k++;
+          if(j<k && U[j]>V[k])
+            contador++;
       };
     };
 }
