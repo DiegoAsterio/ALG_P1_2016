@@ -63,14 +63,13 @@ int main(int argc, char * argv[])
      T[j]=T[k];
      T[k]=tmp;
   }
-  for (int j=0; j<n; j++) {cout << T[j] << " ";}
-  cout << endl;
+  //for (int j=0; j<n; j++) {cout << T[j] << " ";}
+  //cout << endl;
 
   t1=high_resolution_clock::now();
   int valor = CuentaIntercambios(T,n);
   t2=high_resolution_clock::now();
   duration<double> transcurrido = duration_cast<duration<double> >(t2-t1);
-  cout << "El número de inversiones es: " << valor << endl;
   cout << n << " " << transcurrido.count() << endl;
 
 

@@ -61,3 +61,17 @@ set term png
 set output "./grphx/Diego/Parts_Diego.png"
 replot
 set term x11
+
+lineal(x) = l0*x + l1
+nlogaritmica(x) = n0*x*log(n1*x)
+logaritmica(x) = t0*log(t1*x) + t2
+
+fit nlogaritmica(x) "./data/Diego/datos_opcional_dyv_Diego.dat" via n0,n1
+fit logaritmica(x) "./data/Diego/datos_opcional_dyv_Diego.dat" via t0,t1,t2
+
+plot "./data/Diego/datos_opcional_dyv_Diego.dat", nlogaritmica(x), logaritmica(x)
+
+set term png
+set output "./grphx/Diego/opcional_dyv_Diego.png"
+replot
+set term x11

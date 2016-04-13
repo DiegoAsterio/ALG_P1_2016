@@ -8,7 +8,7 @@ using namespace std;
 
 //generador de ejemplos para el problema de la comparaci�n de preferencias. Simplemente se genera una permutaci�n aleatoria del vector 0,1,2,...,n-2,n-1
 
-int contador;
+int contador=0;
 
 double uniforme()
 {
@@ -33,14 +33,14 @@ static void mergesort_lims(int T[], int inicial, int fin)
 {
     int k = (fin - inicial)/2;
 
-    int * U = new int [k - inicial + 1];
+    int * U = new int [k - inicial +1];
     assert(U);
     int l, l2;
     for (l = 0, l2 = inicial; l < k; l++, l2++)
 	     U[l] = T[l2];
     U[l] = INT_MAX;
 
-    int * V = new int [fin - k + 1];
+    int * V = new int [fin - k+1];
     assert(V);
     for (l = 0, l2 = k; l < fin - k; l++, l2++)
 	     V[l] = T[l2];
@@ -48,10 +48,10 @@ static void mergesort_lims(int T[], int inicial, int fin)
 
     if(k!=0)
     {
-      mergesort_lims(U, 0, k);
+     mergesort_lims(U, 0, k);
     }
     if(fin>1)
-      mergesort_lims(V, 0, fin - k);
+     mergesort_lims(V, 0, fin - k);
     fusion(T, inicial, fin, U, V);
     delete [] U;
     delete [] V;
@@ -64,45 +64,22 @@ static void fusion(int T[], int inicial, int fin, int U[], int V[])
   int k = 0;
   for (int i = inicial; i < fin; i++)
     {
-      if (U[j] < V[k]) {
-	       //T[i] = U[j];
+      if (U[j] <= V[k]) {
+          T[i] = U[j];
           j++;
-          if(k<j)
-            contador++;
+          /*if(k+((fin-inicial)/2)<j+((fin-inicial)/2)-1)
+            contador++;*/
       }
       else{
-	       //T[i] = V[k];
+	       T[i] = V[k];
           k++;
-          if(j<k && U[j]>V[k])
-            contador++;
+            contador+=((fin - inicial)/2 -inicial-j);
+
       };
     };
 }
 
 using namespace std::chrono;
-
-
-
-
-int CuentaIntercambios(int* v, int tam)
-{
-  int inter=0;
-  for(int i=0;i<tam;i++)
-  {
-    for(int j = i; j < tam;j++)
-    {
-      if(v[j]<v[i])
-      {
-        inter++;
-      }
-    }
-  }
-  return inter;
-}
-
-
-
-
 
 int main(int argc, char * argv[])
 {
@@ -130,16 +107,13 @@ int main(int argc, char * argv[])
      T[j]=T[k];
      T[k]=tmp;
   }
-  for (int j=0; j<n; j++) {cout << T[j] << " ";}
-  cout << endl;
+  //for (int j=0; j<n; j++) {cout << T[j] << " ";}
+  //cout << endl;
 
-  int res2=CuentaIntercambios(T,n);
   t1=high_resolution_clock::now();
   CuentaIntercambiosDYV(T,n);
   t2=high_resolution_clock::now();
   duration<double> transcurrido = duration_cast<duration<double> >(t2-t1);
-  cout << "Hay " << contador << " intercambios segun merge.\n";
-  cout << "Hay " << res2 << " intercambios segun bruto.\n";
   cout << n << " " << transcurrido.count() << endl;
 
 
