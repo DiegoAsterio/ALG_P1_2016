@@ -2126,3 +2126,159 @@ correlation matrix of the fit parameters:
 t0              1.000 
 t1              0.013  1.000 
 t2             -0.013 -1.000  1.000 
+
+
+*******************************************************************************
+Wed Apr 13 16:09:59 2016
+
+
+FIT:    data read from "./data/Miguel/datos_opcional_dyv_Miguel.dat"
+        format = z
+BREAK: No data to fit
+
+*******************************************************************************
+Wed Apr 13 16:13:18 2016
+
+
+FIT:    data read from "./data/Miguel/datos_opcional_dyv_Miguel.dat"
+        format = z
+        #datapoints = 201
+        residuals are weighted equally (unit weight)
+
+function used for fitting: nlogaritmica(x)
+	nlogaritmica(x) = n0*x*log(n1*x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   n0            n1           
+   0 1.2220989308e+16  0.00e+00 5.53e+06  1.000000e+00  1.000000e+00
+   4 1.5985777744e-02 -2.01e-04 5.53e+02  5.787173e-08  9.266039e-01
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.0159858
+rel. change during last iteration : -2.00984e-009
+
+degrees of freedom    (FIT_NDF)                        : 199
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00896273
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.03305e-005
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+n0              = 5.78717e-008     +/- 3.281e-009   (5.669%)
+n1              = 0.926604         +/- 0.7049       (76.08%)
+
+correlation matrix of the fit parameters:
+                n0     n1     
+n0              1.000 
+n1             -1.000  1.000 
+
+
+*******************************************************************************
+Wed Apr 13 16:13:18 2016
+
+
+FIT:    data read from "./data/Miguel/datos_opcional_dyv_Miguel.dat"
+        format = z
+        #datapoints = 201
+        residuals are weighted equally (unit weight)
+
+function used for fitting: logaritmica(x)
+	logaritmica(x) = t0*log(t1*x) + t2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   t0            t1            t2           
+   0 3.6269751809e+04  0.00e+00 7.46e+00  1.000000e+00  1.000000e+00  1.000000e+00
+   5 5.0878263133e+00 -1.01e-09 7.46e-05  1.247996e-01  8.459638e-01 -1.186285e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 5.08783
+rel. change during last iteration : -1.0125e-014
+
+degrees of freedom    (FIT_NDF)                        : 198
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.1603
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0256961
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+t0              = 0.1248           +/- 0.008643     (6.925%)
+t1              = 0.845964         +/- 8.026e+010   (9.487e+012%)
+t2              = -1.18629         +/- 1.183e+010   (9.976e+011%)
+
+correlation matrix of the fit parameters:
+                t0     t1     t2     
+t0              1.000 
+t1              0.058  1.000 
+t2             -0.058 -1.000  1.000 
+
+
+*******************************************************************************
+Wed Apr 13 16:22:15 2016
+
+
+FIT:    data read from "./data/Miguel/datos_opcional_dyv_Miguel.dat"
+        format = z
+        #datapoints = 201
+        residuals are weighted equally (unit weight)
+
+function used for fitting: nlogaritmica(x)
+	nlogaritmica(x) = n0*x*log(n1*x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   n0            n1           
+   0 1.2220989308e+16  0.00e+00 5.53e+06  1.000000e+00  1.000000e+00
+   4 1.5985777744e-02 -2.01e-04 5.53e+02  5.787173e-08  9.266039e-01
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.0159858
+rel. change during last iteration : -2.00984e-009
+
+degrees of freedom    (FIT_NDF)                        : 199
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00896273
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.03305e-005
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+n0              = 5.78717e-008     +/- 3.281e-009   (5.669%)
+n1              = 0.926604         +/- 0.7049       (76.08%)
+
+correlation matrix of the fit parameters:
+                n0     n1     
+n0              1.000 
+n1             -1.000  1.000 
+
+
+*******************************************************************************
+Wed Apr 13 16:22:15 2016
+
+
+FIT:    data read from "./data/Miguel/datos_opcional_dyv_Miguel.dat"
+        format = z
+        #datapoints = 201
+        residuals are weighted equally (unit weight)
+
+function used for fitting: logaritmica(x)
+	logaritmica(x) = t0*log(t1*x) + t2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   t0            t1            t2           
+   0 3.6269751809e+04  0.00e+00 7.46e+00  1.000000e+00  1.000000e+00  1.000000e+00
+   5 5.0878263133e+00 -1.01e-09 7.46e-05  1.247996e-01  8.459638e-01 -1.186285e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 5.08783
+rel. change during last iteration : -1.0125e-014
+
+degrees of freedom    (FIT_NDF)                        : 198
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.1603
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0256961
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+t0              = 0.1248           +/- 0.008643     (6.925%)
+t1              = 0.845964         +/- 8.026e+010   (9.487e+012%)
+t2              = -1.18629         +/- 1.183e+010   (9.976e+011%)
+
+correlation matrix of the fit parameters:
+                t0     t1     t2     
+t0              1.000 
+t1              0.058  1.000 
+t2             -0.058 -1.000  1.000 
