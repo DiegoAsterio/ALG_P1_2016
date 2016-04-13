@@ -8,6 +8,8 @@ using namespace std;
 
 //generador de ejemplos para el problema de la comparaci�n de preferencias. Simplemente se genera una permutaci�n aleatoria del vector 0,1,2,...,n-2,n-1
 
+int contador;
+
 double uniforme()
 {
  int t = rand();
@@ -15,49 +17,21 @@ double uniforme()
  return (double)t/f;
 }
 
-inline static void mergesort(int T[], int num_elem);
+inline static void CuentaIntercambiosDYV(int T[], int num_elem);
 
-static void mergesort_lims(int T[], int inicial, int final);
+static void mergesort_lims(int T[], int inicial, int fin);
 
-inline static void insercion(int T[], int num_elem);
+static void fusion(int T[], int inicial, int fin, int U[], int V[]);
 
-static void insercion_lims(int T[], int inicial, int final);
-
-static void fusion(int T[], int inicial, int final, int U[], int V[]);
-
-
-inline static void insercion(int T[], int num_elem)
+void CuentaIntercambiosDYV(int T[], int num_elem)
 {
-  insercion_lims(T, 0, num_elem);
-}
-
-
-static void insercion_lims(int T[], int inicial, int final)
-{
-  int i, j;
-  int aux;
-  for (i = inicial + 1; i < final; i++) {
-    j = i;
-    while ((T[j] < T[j-1]) && (j > 0)) {
-      aux = T[j];
-      T[j] = T[j-1];
-      T[j-1] = aux;
-      j--;
-    };
-  };
-}
-
-
-const int UMBRAL_MS = 100;
-
-void CuentaIntercambiosDYV(int T[], int num_elem, int& contador)
-{
+  contador=0;
   mergesort_lims(T, 0, num_elem);
 }
 
-static void mergesort_lims(int T[], int inicial, int final, int& contador)
+static void mergesort_lims(int T[], int inicial, int fin)
 {
-    int k = (final - inicial)/2;
+    int k = (fin - inicial)/2;
 
     int * U = new int [k - inicial + 1];
     assert(U);
@@ -66,38 +40,64 @@ static void mergesort_lims(int T[], int inicial, int final, int& contador)
 	     U[l] = T[l2];
     U[l] = INT_MAX;
 
-    int * V = new int [final - k + 1];
+    int * V = new int [fin - k + 1];
     assert(V);
-    for (l = 0, l2 = k; l < final - k; l++, l2++)
+    for (l = 0, l2 = k; l < fin - k; l++, l2++)
 	     V[l] = T[l2];
     V[l] = INT_MAX;
 
-    mergesort_lims(U, 0, k);
-    mergesort_lims(V, 0, final - k);
-    fusion(T, inicial, final, U, V);
+    if(k!=0)
+    {
+      mergesort_lims(U, 0, k);
+      mergesort_lims(V, 0, fin - k);
+    }
+    fusion(T, inicial, fin, U, V);
     delete [] U;
     delete [] V;
 }
 
 
-static void fusion(int T[], int inicial, int final, int U[], int V[], int& contador)
+static void fusion(int T[], int inicial, int fin, int U[], int V[])
 {
   int j = 0;
   int k = 0;
-  for (int i = inicial; i < final; i++)
+  for (int i = inicial; i < fin; i++)
     {
       if (U[j] < V[k]) {
-	       T[i] = U[j];
+	       //T[i] = U[j];
 	        j++;
+          contador++;
       }
       else{
-	       T[i] = V[k];
+	       //T[i] = V[k];
 	        k++;
       };
     };
 }
 
 using namespace std::chrono;
+
+
+
+
+int CuentaIntercambios(int* v, int tam)
+{
+  int inter=0;
+  for(int i=0;i<tam;i++)
+  {
+    for(int j = i; j < tam;j++)
+    {
+      if(v[j]<v[i])
+      {
+        inter++;
+      }
+    }
+  }
+  return inter;
+}
+
+
+
 
 
 int main(int argc, char * argv[])
@@ -126,15 +126,16 @@ int main(int argc, char * argv[])
      T[j]=T[k];
      T[k]=tmp;
   }
-  //for (int j=0; j<n; j++) {cout << T[j] << " ";}
-  //cout << endl;
+  for (int j=0; j<n; j++) {cout << T[j] << " ";}
+  cout << endl;
 
-  int contador=0;
-
+  int res2=CuentaIntercambios(T,n);
   t1=high_resolution_clock::now();
-  CuentaIntercambiosDYV(T,n,contador);
+  CuentaIntercambiosDYV(T,n);
   t2=high_resolution_clock::now();
   duration<double> transcurrido = duration_cast<duration<double> >(t2-t1);
+  cout << "Hay " << contador << " intercambios segun merge.\n";
+  cout << "Hay " << res2 << " intercambios segun bruto.\n";
   cout << n << " " << transcurrido.count() << endl;
 
 

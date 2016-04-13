@@ -8,49 +8,96 @@ using namespace std;
 
 //generador de ejemplos para el problema de la comparaci�n de preferencias. Simplemente se genera una permutaci�n aleatoria del vector 0,1,2,...,n-2,n-1
 
-double uniforme() //Genera un n�mero uniformemente distribuido en el
-                  //intervalo [0,1) a partir de uno de los generadores
-                  //disponibles en C.
+int contador;
+
+double uniforme()
 {
  int t = rand();
  double f = ((double)RAND_MAX+1.0);
  return (double)t/f;
 }
 
-int CuentaIntercambiosDYV(int* v, int tam, int& contador)
+inline static void CuentaIntercambiosDYV(int T[], int num_elem);
+
+static void mergesort_lims(int T[], int inicial, int fin);
+
+static void fusion(int T[], int inicial, int fin, int U[], int V[]);
+
+void CuentaIntercambiosDYV(int T[], int num_elem)
 {
-  if(tam==2)
-  {
-    if(v[0]>v[1])
-      contador++;
-  }
-  else if(tam==3)
-  {
-    if(v[0]>v[1])
-      contador++;
-    if(v[0]>v[2])
-      contador++;
-    if(v[1]>v[2])
-      contador++;
-  }
-  else
-  {
-    int* v1 = new int [tam/2];
-    int* v2 = new int [(tam%2!=0)?tam/2 + 1:tam/2];
-    for(int i = 0; i < tam;i++)
+  contador=0;
+  mergesort_lims(T, 0, num_elem);
+}
+
+static void mergesort_lims(int T[], int inicial, int fin)
+{
+    int k = (fin - inicial)/2;
+
+    int * U = new int [k - inicial + 1];
+    assert(U);
+    int l, l2;
+    for (l = 0, l2 = inicial; l < k; l++, l2++)
+	     U[l] = T[l2];
+    U[l] = INT_MAX;
+
+    int * V = new int [fin - k + 1];
+    assert(V);
+    for (l = 0, l2 = k; l < fin - k; l++, l2++)
+	     V[l] = T[l2];
+    V[l] = INT_MAX;
+
+    if(k!=0)
     {
-      if(i<tam/2)
-        v1[i]=v[i];
-      else if(i>=tam/2)
-        v2[i]=v[i];
+      mergesort_lims(U, 0, k);
+      mergesort_lims(V, 0, fin - k);
     }
-    CuentaIntercambiosDYV(v1,tam/2,contador);
-    CuentaIntercambiosDYV(v2,tam/2,contador);
-    return contador;
-  }
+    fusion(T, inicial, fin, U, V);
+    delete [] U;
+    delete [] V;
+}
+
+
+static void fusion(int T[], int inicial, int fin, int U[], int V[])
+{
+  int j = 0;
+  int k = 0;
+  for (int i = inicial; i < fin; i++)
+    {
+      if (U[j] < V[k]) {
+	       //T[i] = U[j];
+	        j++;
+          contador++;
+      }
+      else{
+	       //T[i] = V[k];
+	        k++;
+      };
+    };
 }
 
 using namespace std::chrono;
+
+
+
+
+int CuentaIntercambios(int* v, int tam)
+{
+  int inter=0;
+  for(int i=0;i<tam;i++)
+  {
+    for(int j = i; j < tam;j++)
+    {
+      if(v[j]<v[i])
+      {
+        inter++;
+      }
+    }
+  }
+  return inter;
+}
+
+
+
 
 
 int main(int argc, char * argv[])
@@ -79,15 +126,16 @@ int main(int argc, char * argv[])
      T[j]=T[k];
      T[k]=tmp;
   }
-  //for (int j=0; j<n; j++) {cout << T[j] << " ";}
-  //cout << endl;
+  for (int j=0; j<n; j++) {cout << T[j] << " ";}
+  cout << endl;
 
-  int contador=0;
-
+  int res2=CuentaIntercambios(T,n);
   t1=high_resolution_clock::now();
-  CuentaIntercambiosDYV(T,n,contador);
+  CuentaIntercambiosDYV(T,n);
   t2=high_resolution_clock::now();
   duration<double> transcurrido = duration_cast<duration<double> >(t2-t1);
+  cout << "Hay " << contador << " intercambios segun merge.\n";
+  cout << "Hay " << res2 << " intercambios segun bruto.\n";
   cout << n << " " << transcurrido.count() << endl;
 
 
