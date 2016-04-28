@@ -1,0 +1,49 @@
+
+
+*******************************************************************************
+Thu Apr 28 17:18:43 2016
+
+
+FIT:    data read from "solucion_no_greedy_Nacho.dat"
+        format = z
+        #datapoints = 101
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 2.05084e+17       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.6013e+07
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 11 iterations the fit converged.
+final sum of squares of residuals : 0.000383767
+rel. change during last iteration : -4.40861e-10
+
+degrees of freedom    (FIT_NDF)                        : 98
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00197888
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.91599e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 3.29842e-09      +/- 2.59e-11     (0.7853%)
+b               = 4.48913e-07      +/- 2.677e-07    (59.63%)
+c               = 0.000585219      +/- 0.0005792    (98.97%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      c      
+a               1.000 
+b              -0.968  1.000 
+c               0.738 -0.861  1.000 
