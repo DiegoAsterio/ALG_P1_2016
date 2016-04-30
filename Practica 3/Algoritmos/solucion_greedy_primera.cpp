@@ -38,7 +38,7 @@ double uniforme(double lim=0, double max=0)
 
 void SolucionGreedyPrimera(vector<int>& tam, vector<double>& pesos)
 {
-  for(int i = 0; i < (int)tam.size()-1;++i)
+  for(size_t i = 0; i < tam.size()-1;++i)
   {
     if(tam[i]*pesos[i]<tam[i+1]*pesos[i+1])
     {
