@@ -36,20 +36,22 @@ double uniforme(double lim=0, double max=0)
   }
 }
 
+template <typename T>
+void swapFollowing(size_t i, vector<T>& v){
+  T aux;
+  aux=v[i+1];
+  v[i+1] = v[i];
+  v[i] = aux;
+}
+
 void SolucionGreedyPrimera(vector<int>& tam, vector<double>& pesos)
 {
-  for(int i = 0; i < (int)tam.size()-1;++i)
+  for(size_t i = 0; i < tam.size()-1;++i)
   {
-    if(tam[i]*pesos[i]<tam[i+1]*pesos[i+1])
+    if(tam[i]*pesos[i]>=tam[i+1]*pesos[i+1])
     {
-      double aux;
-      int aux2;
-      aux2=tam[i+1];
-      aux=pesos[i+1];
-      tam[i+1] = tam[i];
-      pesos[i+1] = pesos[i];
-      tam[i] = aux2;
-      pesos[i] = aux;
+      swapFollowing(i,tam);
+      swapFollowing(i,pesos);
     }
   }
 }
@@ -89,6 +91,7 @@ int main(int argc, char* argv[])
     else
     {
       a=uniforme(1-suma,(double)2/num_programas);
+      cout << a << endl;
     }
     pesos.push_back(a);
     suma+=a;
@@ -98,10 +101,25 @@ int main(int argc, char* argv[])
   random_shuffle(pesos.begin(),pesos.end());
   random_shuffle(tam_programas.begin(),tam_programas.end());
 
+  #ifdef PRINT
+    double resultado = 0;
+    for (size_t i = 0; i < num_programas; i++) {
+      resultado += tam_programas[i]*pesos[i];
+    }
+    std::cout << "El tiempo medio antes de la ordenación es: "<< resultado << std::endl;
+  #endif
+
   t_antes = high_resolution_clock::now();
   SolucionGreedyPrimera(tam_programas,pesos);
   t_despues = high_resolution_clock::now();
 
+  #ifdef PRINT
+    resultado = 0;
+    for (size_t i = 0; i < num_programas; i++) {
+      resultado += tam_programas[i]*pesos[i];
+    }
+    std::cout << "El tiempo medio tras la ordenación es: "<< resultado << std::endl;
+  #endif
   duration<double> transcurrido = duration_cast<duration<double> >(t_despues-t_antes);
   cout << num_programas << " " << transcurrido.count() << "\n";
 
