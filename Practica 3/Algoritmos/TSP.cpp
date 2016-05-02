@@ -116,7 +116,7 @@ TSP::void TSP_triangles(vector<City>& solucion){
 
   list<City>::iterator maxh = candidatos.begin();
   for (list<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
-    if (*maxh.coord_x<*it.coord_x)
+    if (*maxh.coord_y<*it.coord_y)
       maxh = it;
   }
 
@@ -161,8 +161,8 @@ TSP::list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterat
   list<City>::iterator ret = searching.begin();
 
   for (list<City>::iterator it = searching.begin(); it != searching.end(); ++it) {
-    if(distancia(city1.coord_x,*it.coord_x,city1.coord_y,*it.coord_y) + distancia(city2.coord_x,*it.coord_x,city2.coord_y,*it.coord_y)
-      < distancia(city1.coord_x,*ret.coord_x,city1.coord_y,*ret.coord_y) + distancia(city2.coord_x,*ret.coord_x,city2.coord_y,*ret.coord_y))
+    if(distancia(city1.coord_x,city1.coord_y,*it.coord_x,*it.coord_y) + distancia(city2.coord_x,city2.coord_y,*it.coord_x,*it.coord_y)
+      < distancia(city1.coord_x,city1.coord_y,*ret.coord_x,*ret.coord_y) + distancia(city2.coord_x,city2.coord_y,*ret.coord_x,*ret.coord_y))
       ret = it;
   }
   return ret;
