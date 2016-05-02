@@ -14,20 +14,20 @@ int dividir(vector<double>& mul, vector<int>& tam, vector<double>& pesos, int in
 {
   int izq;
   int der;
-  int pibote;
+  int pivote;
   int temp;
 
-  pibote = mul[inicio];
+  pivote = mul[inicio];
   izq = inicio;
   der = fin;
 
   //Mientras no se cruzen los índices
   while (izq < der){
-    while (mul[der] > pibote){
+    while (mul[der] > pivote){
 	  der--;
     }
 
-	while ((izq < der) && (mul[izq] <= pibote)){
+	while ((izq < der) && (mul[izq] <= pivote)){
       izq++;
     }
 

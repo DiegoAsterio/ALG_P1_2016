@@ -1,0 +1,111 @@
+
+
+*******************************************************************************
+Mon May  2 11:18:53 2016
+
+
+FIT:    data read from "./data/Nacho/solucion_greedy_optima_Nacho.dat"
+        format = z
+        #datapoints = 101
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+fitted parameters initialized with current variable values
+
+BREAK:          Undefined value during function evaluation
+
+
+
+*******************************************************************************
+Mon May  2 11:33:25 2016
+
+
+FIT:    data read from "./data/Nacho/solucion_greedy_optima_Nacho.dat"
+        format = z
+        #datapoints = 100
+        residuals are weighted equally (unit weight)
+
+function used for fitting: g(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 2.67202e+11       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 36781.8
+
+initial set of free parameter values
+
+e0              = 1
+e1              = 1
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 5.21919e-06
+rel. change during last iteration : -1.31255e-08
+
+degrees of freedom    (FIT_NDF)                        : 98
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.000230775
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.3257e-08
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+e0              = 4.06328e-08      +/- 1.2e-08      (29.53%)
+e1              = 0.889932         +/- 2.307        (259.2%)
+
+
+correlation matrix of the fit parameters:
+
+               e0     e1     
+e0              1.000 
+e1             -0.999  1.000 
+
+
+*******************************************************************************
+Mon May  2 11:33:35 2016
+
+
+FIT:    data read from "./data/Nacho/solucion_greedy_optima_Nacho.dat"
+        format = z
+        #datapoints = 100
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 2.05176e+17       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.61486e+07
+
+initial set of free parameter values
+
+a0              = 1
+a1              = 1
+a2              = 1
+
+After 11 iterations the fit converged.
+final sum of squares of residuals : 7.47996e-07
+rel. change during last iteration : -2.54049e-07
+
+degrees of freedom    (FIT_NDF)                        : 97
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 8.7814e-05
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.7113e-09
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a0              = 2.77385e-11      +/- 1.15e-12     (4.145%)
+a1              = 1.32457e-07      +/- 1.19e-08     (8.981%)
+a2              = 8.95982e-05      +/- 2.588e-05    (28.89%)
+
+
+correlation matrix of the fit parameters:
+
+               a0     a1     a2     
+a0              1.000 
+a1             -0.967  1.000 
+a2              0.736 -0.860  1.000 
