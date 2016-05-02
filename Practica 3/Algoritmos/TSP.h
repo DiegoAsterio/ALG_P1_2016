@@ -25,7 +25,7 @@ class TSP {
 
         TSP(char* cadena);
 
-        void TSP_vecino_mas_cercano(vector<City> vec);
+        void TSP_vecino_mas_cercano(vector<City>& vec);
 }
 
 
