@@ -10,105 +10,48 @@
 
 using namespace std;
 
-int dividir(vector<double>& mul, vector<int>& tam, vector<double>& pesos, int inicio, int fin)
+
+void solucionGreedy(vector<int>& tam, vector<double>& pesos)
 {
-  int izq;
-  int der;
-  int pivote;
-  int temp;
+  std::vector<int> aux1;
+  std::vector<double> aux2;
 
-  pivote = mul[inicio];
-  izq = inicio;
-  der = fin;
-
-  //Mientras no se cruzen los índices
-  while (izq < der){
-    while (mul[der] > pivote){
-	  der--;
+  while (! tam.empty()) {
+    size_t index = 0;
+    for (size_t i = 0; i < tam.size(); i++) {
+      if(tam[i]*pesos[i]<tam[index]*pesos[index])
+        index = i;
     }
 
-	while ((izq < der) && (mul[izq] <= pivote)){
-      izq++;
-    }
+    aux1.push_back(tam[index]);
+    aux2.push_back(pesos[index]);
 
-    // Si todavia no se cruzan los indices seguimos intercambiando
-	if(izq < der){
-      temp= mul[izq];
-      mul[izq] = mul[der];
-      mul[der] = temp;
-
-      temp= tam[izq];
-      tam[izq] = tam[der];
-      tam[der] = temp;
-
-      temp= pesos[izq];
-      pesos[izq] = pesos[der];
-      pesos[der] = temp;
-    }
+    tam.erase(tam.begin()+index);
+    pesos.erase(pesos.begin()+index);
   }
-
-  //Los indices ya se han cruzado, ponemos el pivote en el lugar que le corresponde
-  temp = mul[der];
-  mul[der] = mul[inicio];
-  mul[inicio] = temp;
-
-  temp = tam[der];
-  tam[der] = tam[inicio];
-  tam[inicio] = temp;
-
-  temp = pesos[der];
-  pesos[der] = pesos[inicio];
-  pesos[inicio] = temp;
-
-  //La nueva posición del pivote
-  return der;
+  tam = aux1;
+  pesos = aux2;
 }
 
-void quicksort(vector<double>& mul, vector<int>& tam, vector<double>& pesos, int inicio, int fin)
+void fill_weighs(vector<double> & v, int n)
 {
-  int pivote;
-  if(inicio < fin)
-  {
-    pivote = dividir(mul, tam, pesos, inicio, fin );
-    quicksort( mul, tam, pesos, inicio, pivote - 1 );//ordeno la lista de los menores
-    quicksort( mul, tam, pesos, pivote + 1, fin );//ordeno la lista de los mayores
-  }
-}
+  vector<double> aux;
 
-double uniforme(double lim=0, double max=0)
-{
-  double u;
-  if(lim==0 && max==0)
-  {
-    u = (int) rand();
-    u = u/(int)(RAND_MAX+1.0);
-    return u;
-  }
-  else
-  {
-    if(lim<max && lim!=0)
-    {
-      u = (int) rand()%(int)(lim*(RAND_MAX+1));
-      u = u/(int)(RAND_MAX+1.0);
-      return u;
-    }
-    else
-    {
-      u = (int) rand()%(int)(max*(RAND_MAX+1));
-      u = u/(int)(RAND_MAX+1.0);
-      return u;
-    }
-  }
-}
+  srand(time(0));
 
-void SolucionNoGreedy(vector<int>& tam, vector<double>& pesos)
-{
-  vector<double> multiplicacion;
-  for(int i = 0; i < (int)tam.size();i++)
-  {
-    multiplicacion.push_back(tam[i]*pesos[i]);
+  for (size_t i = 0; i < n; i++) {
+    aux.push_back(rand()/2);
   }
-  quicksort(multiplicacion, tam, pesos, 0, (int)multiplicacion.size()-1);
+
+  double sum = 0;
+
+  for (size_t i = 0; i < n; i++) {
+    sum += aux[i];
+  }
+
+  for (size_t i = 0 ; i < n ; ++i){
+    v.push_back(aux[i]/sum);
+  }
 }
 
 using namespace std::chrono;
@@ -131,34 +74,16 @@ int main(int argc, char* argv[])
 
   //Generación de pesos uniformemente distribuidos
   vector<double> pesos;
-  if(num_programas!=1)
-    pesos.push_back(uniforme(0,(double)2/num_programas));
-  else
-    pesos.push_back(1);
-  double suma = pesos[0];
-  for(int i = 1; i < num_programas;++i)
-  {
-    double a;
-    if(i==num_programas-1)
-    {
-      a=1-suma;
-    }
-    else
-    {
-      a=uniforme(1-suma,(double)2/num_programas);
-    }
-    pesos.push_back(a);
-    suma+=a;
-  }
+  fill_weighs(pesos,num_programas);
 
   //Barajamos los dos vectores
   random_shuffle(pesos.begin(),pesos.end());
   random_shuffle(tam_programas.begin(),tam_programas.end());
 
   t_antes = high_resolution_clock::now();
-  SolucionNoGreedy(tam_programas,pesos);
+  solucionGreedy(tam_programas,pesos);
   t_despues = high_resolution_clock::now();
-
+  
   duration<double> transcurrido = duration_cast<duration<double> >(t_despues-t_antes);
   cout << num_programas << " " << transcurrido.count() << "\n";
 
