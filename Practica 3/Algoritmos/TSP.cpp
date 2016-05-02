@@ -95,7 +95,7 @@ TSP::void TSP_triangulillos(vector<City>& solucion){
 
     list<City> candidatos(ciudades);
 
-    solulista.push_back(candidatos.front());
+    list::iterator it = candidatos.begin();
     for (size_t i = 0; i < c; i++) {
       if (minb.coord_x>candidatos[i].coord_x)
         minb = candidatos[i];

@@ -30,5 +30,3 @@ class TSP {
 
 
 #endif // TSP_H_INCLUDED
-
-
