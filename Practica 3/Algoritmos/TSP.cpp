@@ -73,7 +73,7 @@ TSP::TSP(char* cadena)
     }
 }
 
-TSP::void TSP_vecino_mas_cercano(vector<City> solucion)
+TSP::void TSP_vecino_mas_cercano(vector<City>& solucion)
 {
     vector<City> solucion;
     solucion.push_back(ciudades.get(0));
@@ -87,7 +87,6 @@ TSP::void TSP_vecino_mas_cercano(vector<City> solucion)
         solucion.push_back(*it);
         candidatos.erase(it);
     }
-    return solucion;
 }
 
 
