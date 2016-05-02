@@ -131,7 +131,7 @@ TSP::void TSP_triangles(vector<City>& solucion){
   }
 }
 
-list<City>::iterator find_max_edge(list<City> l){
+TSP::list<City>::iterator find_max_edge(list<City> l){
   list<City>::iterator ret = l.begin();
   for (list<City>::iterator it = l.begin();it != l.end();++it) {
     if (it+1!=l.end()){
@@ -147,7 +147,7 @@ list<City>::iterator find_max_edge(list<City> l){
   return ret;
 }
 
-list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching) {
+TSP::list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching) {
   City city1,city2;
   if (it+1 == it.end()) {
     city1 = *it;

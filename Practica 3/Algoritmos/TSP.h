@@ -20,13 +20,17 @@ class TSP {
         int nCiudades;
         vector<City> ciudades;
         vector<City>::iterator menorDistancia(City c);
+        list<City>::iterator find_max_edge(list<City> l);
+        list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching);
+
 
     public:
 
         TSP(char* cadena);
 
         void TSP_vecino_mas_cercano(vector<City>& vec);
+        void TSP_triangles(vector<City>& solucion);
+
+
 }
-
-
 #endif // TSP_H_INCLUDED
