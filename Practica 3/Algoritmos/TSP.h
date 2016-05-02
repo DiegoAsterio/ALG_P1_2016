@@ -7,8 +7,8 @@
 
 struct City{
     int ciudad;
-    int coord_x;
-    int coord_y;
+    double coord_x;
+    double coord_y;
 };
 
 
