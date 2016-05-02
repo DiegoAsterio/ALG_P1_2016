@@ -75,29 +75,31 @@ TSP::TSP(char* cadena)
 
 TSP::void TSP_vecino_mas_cercano(vector<City>& solucion)
 {
-    vector<City> solucion;
-    solucion.push_back(ciudades.get(0));
 
-    vector<City> candidatos(ciudades);
-    candidatos.erase(candidatos.begin());
+  solucion.push_back(ciudades.get(0));
 
-    while(solucion.size() < nCiudades)
-    {
-        vector<City>::iterator it = candidatos.menorDistancia(solucion.at(solucion.size()-1));
-        solucion.push_back(*it);
-        candidatos.erase(it);
-    }
+  vector<City> candidatos(ciudades);
+  candidatos.erase(candidatos.begin());
+
+  while(solucion.size() < nCiudades)
+  {
+    vector<City>::iterator it = candidatos.menorDistancia(solucion.at(solucion.size()-1));
+    solucion.push_back(*it);
+    candidatos.erase(it);
+  }
+  return solucion;
 }
 
+TSP::void TSP_triangulillos(vector<City>& solucion){
+    list<City> solulista;
+
+    list<City> candidatos(ciudades);
+
+    solulista.push_back(candidatos.front());
+    for (size_t i = 0; i < c; i++) {
+      if (minb.coord_x>candidatos[i].coord_x)
+        minb = candidatos[i];
+    }
 
 
-
-
-
-
-
-
-
-
-
-
+}
