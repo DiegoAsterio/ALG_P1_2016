@@ -1,0 +1,33 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[vmargin=2cm,hmargin=2cm]{geometry}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{cancel}
+\usepackage[usenames]{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{accents}
+
+
+\begin{document}
+
+
+\section*{Teorema}
+
+Si $\pi_1 \cdot l_1 \leq \pi_2 \cdot l_2 \leq ... \leq \pi_n \cdot l_n$ entonces la ordenación $i_j = j, \ 1 \leq j \leq n$ minimiza 
+$\sum_{k=1}^{n} \pi_{i_k} \sum_{j=i}^{k}l_{i_j}$ sobre todas las posibles permutaciones de $i_j$.
+
+\section*{Demostración}
+Sea I = $i_1, i_2, ..., i_n$ cualquier permutación del conjunto de índices $\{1,2,...,n\}$. Entonces: \\
+$d(I) = \sum_{k=1}^{n} \pi_{i_k} \sum_{j=i}^{k}l_{i_j} = \sum_{k=1}^{n}\pi_{i_k} \cdot (n-k+1)\cdot l_{i_k}$ \\
+Si existiese a y b tal que a<b y $l_{i_a}>l_{i_b}$ entonces el intercambio de $i_a$ e $i_b$ daría como resultado una permutación $I'$ con: \\
+$d(I') = [\sum_{k, \ k\neq a, \ k\neq b}^{}\pi_{i_k}\cdot (n-k+1)\cdot l_{i_k}] + \pi_{i_b}\cdot (n-a+1)l_{i_b} + \pi_{i_a}(n-b+1)\cdot l_{i_a}$ \\
+Restando d(I) menos d(I') obtenemos: \\
+$d(I)-d(I') = (n-a+1)\cdot (pi_{i_a}\cdot l_{i_a} - pi_{i_b}\cdot l_{i_b}) + (n-b+1)\cdot (pi_{i_b}\cdot l_{i_b} - pi_{i_a}\cdot l_{i_a}) = \\ =(b-a)\cdot (\pi_{i_a} \cdot l_{i_a} - \pi_{i_b} \cdot l_{i_b})>0$ \\ Por lo tanto, ninguna permutación que no este en orden no decreciente de los $\pi_i \cdot l_i$ puede tener mínimo d. Es fácil ver que todas las permutaciones en orden no decreciente de los $\pi_i \cdot l_i$ tienen el mismo valor d. Por lo tanto el orden definido por $i_j = j, \ 1\leq j\leq n$ minimiza el valor d.
+
+
+\end{document}
