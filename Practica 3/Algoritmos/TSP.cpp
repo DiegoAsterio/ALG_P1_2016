@@ -87,6 +87,7 @@ TSP::void TSP_vecino_mas_cercano(vector<City>& solucion)
     solucion.push_back(*it);
     candidatos.erase(it);
   }
+  return solucion;
 }
 
 TSP::void TSP_triangles(vector<City>& solucion){
