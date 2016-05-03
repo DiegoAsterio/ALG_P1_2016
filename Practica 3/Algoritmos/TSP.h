@@ -4,12 +4,13 @@
 
 #include <fstream>
 #include <vector>
-#include <list>
+#include <vector>
 
 struct City{
     int ciudad;
     double coord_x;
     double coord_y;
+    City& operator=(const City&);
 };
 
 
@@ -21,8 +22,8 @@ class TSP {
         int nCiudades;
         vector<City> ciudades;
         vector<City>::iterator menorDistancia(City c, vector<City>& candidatos);
-        list<City>::iterator find_max_edge(list<City> l);
-        list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching);
+        void find_max_edge(vector<City>& l, vector<City>::iterator&);
+        void find_nearest_point(const vector<City>& orig, vector<City>::iterator& it, vector<City>& searching,  vector<City>::iterator&);
 
 
     public:
