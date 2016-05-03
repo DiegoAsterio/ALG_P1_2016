@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <vector>
 #include <iostream>
-#include <list>
 #include <cmath>
 #include "TSP.h"
 
@@ -76,6 +75,15 @@ TSP::TSP(char* cadena)
     }
 }
 
+City& City::operator=(const City& other){
+  if(this != &other){
+    this->ciudad = other.ciudad;
+    this->coord_x = other.coord_x;
+    this->coord_y = other.coord_y;
+  }
+  return *this;
+}
+
 void TSP::TSP_vecino_mas_cercano(vector<City>& solucion)
 {
 
@@ -94,54 +102,54 @@ void TSP::TSP_vecino_mas_cercano(vector<City>& solucion)
 }
 
 void TSP::TSP_triangles(vector<City>& solucion){
-  list<City> solulista;
 
-  list<City> candidatos(ciudades.begin(), ciudades.end());
+  vector<City> candidatos(ciudades);
 
-  list<City>::iterator minb = candidatos.begin();
-  for (list<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
+
+  vector<City>::iterator minb = candidatos.begin();
+  for (vector<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
     if ((*minb).coord_x>(*it).coord_x)
       minb = it;
   }
 
-  solulista.push_back(*minb);
+  solucion.push_back(*minb);
   candidatos.erase(minb);
 
-  list<City>::iterator maxb = candidatos.begin();
-  for (list<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
+  vector<City>::iterator maxb = candidatos.begin();
+  for (vector<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
     if ((*maxb).coord_x<(*it).coord_x)
       maxb = it;
   }
 
-  solulista.push_back(*maxb);
+  solucion.push_back(*maxb);
   candidatos.erase(maxb);
 
 
-  list<City>::iterator maxh = candidatos.begin();
-  for (list<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
+  vector<City>::iterator maxh = candidatos.begin();
+  for (vector<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
     if ((*maxh).coord_y<(*it).coord_y)
       maxh = it;
   }
 
-  solulista.push_back(*maxh);
+  solucion.push_back(*maxh);
   candidatos.erase(maxh);
-
+City aux;
   while (!candidatos.empty()){
-    list<City>::iterator mayor_lado = find_max_edge(solulista);
-    list<City>::iterator nearest = find_nearest_point(solulista,mayor_lado,candidatos);
-    solulista.insert(mayor_lado,*nearest);
+    vector<City>::iterator mayor_lado, nearest;
+    find_max_edge(solucion, mayor_lado);
+    find_nearest_point(solucion,mayor_lado,candidatos, nearest);
+    aux = *nearest;
+    solucion.insert(mayor_lado,aux);
     candidatos.erase(nearest);
   }
 
-  for(list<City>::iterator i = solulista.begin(); i != solulista.end();++i)
-    solucion.push_back(*i);
 }
 
-list<City>::iterator TSP::find_max_edge(list<City> l){
-  list<City>::iterator ret = l.begin();
-  for (list<City>::iterator it = l.begin();it != l.end();++it) {
-    list<City>::iterator it2 = it;
-    list<City>::iterator it3 = ret;
+ void TSP::find_max_edge(vector<City>& l,vector<City>::iterator& ret){
+  ret = l.begin();
+  for (vector<City>::iterator it = l.begin();it != l.end();++it) {
+    vector<City>::iterator it2 = it;
+    vector<City>::iterator it3 = ret;
     ++it2;
     ++it3;
     if ((it2)!=l.end()){
@@ -154,12 +162,11 @@ list<City>::iterator TSP::find_max_edge(list<City> l){
         ret = it;
     }
   }
-  return ret;
 }
 
-list<City>::iterator TSP::find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching) {
+ void TSP::find_nearest_point(const vector<City>& orig, vector<City>::iterator& it, vector<City>& searching, vector<City>::iterator& ret) {
   City city1,city2;
-  list<City>::iterator it2 = it;
+  vector<City>::iterator it2 = it;
   ++it2;
   if (it2 == orig.end()) {
     city1 = *it;
@@ -170,14 +177,13 @@ list<City>::iterator TSP::find_nearest_point(list<City> orig, list<City>::iterat
     city2=*(it2);
   }
 
-  list<City>::iterator ret = searching.begin();
+  ret = searching.begin();
 
-  for (list<City>::iterator it = searching.begin(); it != searching.end(); ++it) {
+  for (vector<City>::iterator it = searching.begin(); it != searching.end(); ++it) {
     if(distancia(city1.coord_x,(*it).coord_x,city1.coord_y,(*it).coord_y) + distancia(city2.coord_x,(*it).coord_x,city2.coord_y,(*it).coord_y)
       < distancia(city1.coord_x,(*ret).coord_x,city1.coord_y,(*ret).coord_y) + distancia(city2.coord_x,(*ret).coord_x,city2.coord_y,(*ret).coord_y))
       ret = it;
   }
-  return ret;
 }
 
 
