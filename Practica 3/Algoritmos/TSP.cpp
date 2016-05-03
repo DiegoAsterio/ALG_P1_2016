@@ -1,6 +1,8 @@
 #include <fstream>
 #include <cstdlib>
 #include <vector>
+#include <utility>
+#include <climits>
 #include <iostream>
 #include <cmath>
 #include "TSP.h"
@@ -73,6 +75,7 @@ TSP::TSP(char* cadena)
             getline(archivo,linea);
         }
     }
+    ciudades.pop_back();
     archivo.close();
 }
 
@@ -99,7 +102,6 @@ void TSP::TSP_vecino_mas_cercano(vector<City>& solucion)
     solucion.push_back(*it);
     candidatos.erase(it);
   }
-
 }
 
 void TSP::TSP_triangles(vector<City>& solucion){
@@ -238,6 +240,52 @@ void TSP::TSP_RandomSwap(int n, vector<City>& solucion){
 		}
 	}
 
+}
+
+pair<double,vector<City>::iterator> TSP::DevuelveMenorDistancia(City c, vector<City>& candidatos)
+{
+    vector<City>::iterator it=candidatos.begin(), min_iter=it;
+    double min;
+    double n;
+    min=distancia(c.coord_x,(*it).coord_x,c.coord_y,(*it).coord_y);
+    ++it;
+    while(it!=candidatos.end())
+    {
+        n=distancia(c.coord_x,(*it).coord_x,c.coord_y,(*it).coord_y);
+        if(n<min)
+        {
+            min=n;
+            min_iter = it;
+        }
+        ++it;
+    }
+    pair<double,vector<City>::iterator> ret(min, min_iter);
+    return ret;
+
+}
+
+void TSP::Dijsktra(vector<City>& res)
+{
+  vector<City> candidatos(ciudades);
+  res.push_back(candidatos[0]);
+  candidatos.erase(candidatos.begin());
+
+  while(candidatos.size()!=0)
+  {
+    double dist = INT_MAX;
+    vector<City>::iterator min_dist;
+    for(vector<City>::iterator it = res.begin();it!=res.end();++it)
+    {
+      pair<double, vector<City>::iterator> f =DevuelveMenorDistancia(*it, candidatos);
+      if(dist>f.first)
+      {
+        min_dist = f.second;
+        dist = f.first;
+      }
+    }
+    res.push_back(*min_dist);
+    candidatos.erase(min_dist);
+  }
 }
 
 

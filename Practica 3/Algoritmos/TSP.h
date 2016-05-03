@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <vector>
+#include <utility>
 #include <vector>
 
 struct City{
@@ -30,6 +31,8 @@ class TSP {
 
         TSP(char* cadena);
 
+        pair<double,vector<City>::iterator> DevuelveMenorDistancia(City c, vector<City>& candidatos);
+        void Dijsktra(vector<City>& res);
         void TSP_vecino_mas_cercano(vector<City>& vec);
         void TSP_triangles(vector<City>& solucion);
         void TSP_RandomSwap(int n, vector<City>& solucion);

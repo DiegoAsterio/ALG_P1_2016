@@ -20,21 +20,26 @@ int main(int argc, char* argv[])
     return(1);
   }
 
-  TSP t_vecino_mas_cercano(argv[1]), t_triangles(argv[1]), t_random_swap(argv[1]);
+  TSP t_vecino_mas_cercano(argv[1]), t_triangles(argv[1]), t_random_swap(argv[1]), t_dijsktra(argv[1]);
 
-  vector<City> v_vecino_mas_cercano, v_triangles, v_random_swap;
+  vector<City> v_vecino_mas_cercano, v_triangles, v_random_swap, v_dijsktra;
 
   t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
   t_triangles.TSP_triangles(v_triangles);
-  t_random_swap.TSP_RandomSwap(100000,v_random_swap);
+  t_dijsktra.Dijsktra(v_dijsktra);
+  t_random_swap.TSP_RandomSwap(100,v_random_swap);
 
   ofstream f_vecino_mas_cercano("sol_vecino_mas_cercano.tsp");
   ofstream f_triangles("sol_triangles.tsp");
   ofstream f_random_swap("sol_random_swap.tsp");
+  ofstream f_dijsktra("sol_dijsktra.tsp");
+
 
   t_vecino_mas_cercano.TSP_WriteBack(f_vecino_mas_cercano, v_vecino_mas_cercano);
   t_triangles.TSP_WriteBack(f_triangles, v_triangles);
   t_random_swap.TSP_WriteBack(f_random_swap, v_random_swap);
+  t_dijsktra.TSP_WriteBack(f_dijsktra, v_dijsktra);
+
 
   double dist = 0;
   for(int i = 0; i < (int)v_random_swap.size()-1;++i)
@@ -56,6 +61,13 @@ int main(int argc, char* argv[])
     dist+=distancia2(v_triangles[i].coord_x, v_triangles[i+1].coord_x, v_triangles[i].coord_y, v_triangles[i+1].coord_y);
   }
   cout << "Distancia triangles: " << dist << endl;
+
+  dist = 0;
+  for(int i = 0; i < (int)v_dijsktra.size()-1;++i)
+  {
+    dist+=distancia2(v_dijsktra[i].coord_x, v_dijsktra[i+1].coord_x, v_dijsktra[i].coord_y, v_dijsktra[i+1].coord_y);
+  }
+  cout << "Distancia dijsktra: " << dist << endl;
 
   return(0);
 }
