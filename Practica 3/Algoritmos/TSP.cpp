@@ -219,3 +219,13 @@ TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
 	}
 
 }
+
+
+TSP::void TSP_WriteBack(ofstream& os, vector<City> sol)
+{
+  os << "DIMENSION: " << sol.size() << endl;
+  for(int i = 1;i<=sol.size();++i)
+  {
+    os << i << " " << sol[i-1].coord_x << " " << sol[i-1].coord_y << endl;
+  }
+}
