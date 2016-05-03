@@ -1,5 +1,8 @@
 #include <fstream>
 #include <cstdlib>
+#include <vector>
+#include <iostream>
+#include <list>
 #include <cmath>
 #include "TSP.h"
 
@@ -135,12 +138,12 @@ TSP::list<City>::iterator find_max_edge(list<City> l){
   list<City>::iterator ret = l.begin();
   for (list<City>::iterator it = l.begin();it != l.end();++it) {
     if (it+1!=l.end()){
-      if(distancia(*ret.coord_x,*ret.coord_y,*(ret+1).coord_x,*(ret+1).coord_y)
-          < distancia(*it.coord_x,*it.coord_y,*(it+1).coord_x,*(it+1).coord_y))
+      if(distancia(*ret.coord_x,*(ret+1).coord_x,*ret.coord_y,*(ret+1).coord_y)
+          < distancia(*it.coord_x,*(it+1).coord_x,*it.coord_y,*(it+1).coord_y))
         ret = it;
     }else{
-      if (distancia(*ret.coord_x,*ret.coord_y,*(ret+1).coord_x,*(ret+1).coord_y)
-          < distancia(*it.coord_x,*it.coord_y,l.front().coord_x,l.front().coord_y))
+      if (distancia(*ret.coord_x,*(ret+1).coord_x,*ret.coord_y,*(ret+1).coord_y)
+          < distancia(*it.coord_x,l.front().coord_x,*it.coord_y,l.front().coord_y))
         ret = it;
     }
   }
@@ -161,8 +164,8 @@ TSP::list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterat
   list<City>::iterator ret = searching.begin();
 
   for (list<City>::iterator it = searching.begin(); it != searching.end(); ++it) {
-    if(distancia(city1.coord_x,city1.coord_y,*it.coord_x,*it.coord_y) + distancia(city2.coord_x,city2.coord_y,*it.coord_x,*it.coord_y)
-      < distancia(city1.coord_x,city1.coord_y,*ret.coord_x,*ret.coord_y) + distancia(city2.coord_x,city2.coord_y,*ret.coord_x,*ret.coord_y))
+    if(distancia(city1.coord_x,*it.coord_x,city1.coord_y,*it.coord_y) + distancia(city2.coord_x,*it.coord_x,city2.coord_y,*it.coord_y)
+      < distancia(city1.coord_x,*ret.coord_x,city1.coord_y,*ret.coord_y) + distancia(city2.coord_x,*ret.coord_x,city2.coord_y,*ret.coord_y))
       ret = it;
   }
   return ret;
@@ -186,9 +189,9 @@ TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
 		k = k%nCiudades;
 		distlueg = distant = 0;
 		for(vector<City>::iterator it = ciudades.begin(); it!=ciudades.end()-1;it++){
-			distant += distancia((*it).coord_x,(*it).coord_y,*(it+1).coord_x,*(it+1).coord_y);
+			distant += distancia((*it).coord_x,*(it+1).coord_x,(*it).coord_y,*(it+1).coord_y);
 		}
-		distant += distant(ciudades[0].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_x,ciudades[nCiudades-1].coord_y);	
+		distant += distancia(ciudades[0].coord_x,ciudades[nCiudades-1].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_y);
 			aux1 = ciudades[j];
 			aux2 = ciudades[j+1];
 			aux3 = ciudades[j+2];
@@ -199,9 +202,9 @@ TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
 			ciudades[k+1] = aux2;
 			ciudades[k+2] = aux3;
 		for(vector<City>::iterator it = ciudades.begin(); it!=ciudades.end()-1;it++){
-			distlueg += distancia((*it).coord_x,(*it).coord_y,*(it+1).coord_x,*(it+1).coord_y);
+			distlueg += distancia((*it).coord_x,*(it+1).coord_x,(*it).coord_y,*(it+1).coord_y);
 		}
-		distlueg += distant(ciudades[0].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_x,ciudades[nCiudades-1].coord_y);
+		distlueg += distancia(ciudades[0].coord_x,ciudades[nCiudades-1].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_y);
 		if(distant < distlueg){
 			aux1 = ciudades[j];
 			aux2 = ciudades[j+1];
@@ -214,5 +217,5 @@ TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
 			ciudades[k+2] = aux3;
 		}
 	}
-	
+
 }

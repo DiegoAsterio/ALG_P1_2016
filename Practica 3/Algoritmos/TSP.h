@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <vector>
+#include <list>
 
 struct City{
     int ciudad;
@@ -33,5 +34,5 @@ class TSP {
         void TSP_RandomSwap(int n, vector<City>& solucion);
 
 
-}
+};
 #endif // TSP_H_INCLUDED
