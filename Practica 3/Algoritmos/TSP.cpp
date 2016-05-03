@@ -167,3 +167,52 @@ TSP::list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterat
   }
   return ret;
 }
+
+
+TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
+	City aux1,aux2,aux3;
+	srand(time(0));
+	int j,k;
+	double distant,distlueg;
+	for(vector<City>::iterator it = ciudades.begin(); it!=ciudades.end();it++){
+		solucion.push_back(*it);
+	}
+	for(int i = 0; i < n; i++){
+		j = nCiudades*rand()/(RAND_MAX + 1.0);
+		do{
+			k = (nCiudades)*rand()/(RAND_MAX + 1.0);
+		}while((j > nCiudades - 3 && k < 3)||(k > nCiudades - 3 && j < 3))
+		j = j%nCiudades;
+		k = k%nCiudades;
+		distlueg = distant = 0;
+		for(vector<City>::iterator it = ciudades.begin(); it!=ciudades.end()-1;it++){
+			distant += distancia((*it).coord_x,(*it).coord_y,*(it+1).coord_x,*(it+1).coord_y);
+		}
+		distant += distant(ciudades[0].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_x,ciudades[nCiudades-1].coord_y);	
+			aux1 = ciudades[j];
+			aux2 = ciudades[j+1];
+			aux3 = ciudades[j+2];
+			ciudades[j] = ciudades[k];
+			ciudades[j+1] = ciudades[k+1];
+			ciudades[j+2] = ciudades[k+2];
+			ciudades[k] = aux1;
+			ciudades[k+1] = aux2;
+			ciudades[k+2] = aux3;
+		for(vector<City>::iterator it = ciudades.begin(); it!=ciudades.end()-1;it++){
+			distlueg += distancia((*it).coord_x,(*it).coord_y,*(it+1).coord_x,*(it+1).coord_y);
+		}
+		distlueg += distant(ciudades[0].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_x,ciudades[nCiudades-1].coord_y);
+		if(distant < distlueg){
+			aux1 = ciudades[j];
+			aux2 = ciudades[j+1];
+			aux3 = ciudades[j+2];
+			ciudades[j] = ciudades[k];
+			ciudades[j+1] = ciudades[k+1];
+			ciudades[j+2] = ciudades[k+2];
+			ciudades[k] = aux1;
+			ciudades[k+1] = aux2;
+			ciudades[k+2] = aux3;
+		}
+	}
+	
+}

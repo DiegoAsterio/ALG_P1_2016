@@ -30,6 +30,7 @@ class TSP {
 
         void TSP_vecino_mas_cercano(vector<City>& vec);
         void TSP_triangles(vector<City>& solucion);
+        void TSP_RandomSwap(int n, vector<City>& solucion);
 
 
 }
