@@ -1,9 +1,16 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include "TSP.h"
 
 using namespace std;
+
+double distancia2(int x0, int x1, int y0, int y1)
+{
+    double n = sqrt(pow(x1-x0,2) + pow(y1-y0,2));
+    return n;
+}
 
 int main(int argc, char* argv[])
 {
@@ -17,11 +24,9 @@ int main(int argc, char* argv[])
 
   vector<City> v_vecino_mas_cercano, v_triangles, v_random_swap;
 
-  //t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
-  //t_triangles.TSP_triangles(v_triangles);
-  t_random_swap.TSP_RandomSwap(50,v_random_swap);
-
-  string output(argv[2]);
+  t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
+  t_triangles.TSP_triangles(v_triangles);
+  t_random_swap.TSP_RandomSwap(100000,v_random_swap);
 
   ofstream f_vecino_mas_cercano("sol_vecino_mas_cercano.tsp");
   ofstream f_triangles("sol_triangles.tsp");
@@ -30,6 +35,27 @@ int main(int argc, char* argv[])
   t_vecino_mas_cercano.TSP_WriteBack(f_vecino_mas_cercano, v_vecino_mas_cercano);
   t_triangles.TSP_WriteBack(f_triangles, v_triangles);
   t_random_swap.TSP_WriteBack(f_random_swap, v_random_swap);
+
+  double dist = 0;
+  for(int i = 0; i < (int)v_random_swap.size()-1;++i)
+  {
+    dist+=distancia2(v_random_swap[i].coord_x, v_random_swap[i+1].coord_x, v_random_swap[i].coord_y, v_random_swap[i+1].coord_y);
+  }
+  cout << "Distancia random swap: " << dist << endl;
+
+  dist = 0;
+  for(int i = 0; i < (int)v_vecino_mas_cercano.size()-1;++i)
+  {
+    dist+=distancia2(v_vecino_mas_cercano[i].coord_x, v_vecino_mas_cercano[i+1].coord_x, v_vecino_mas_cercano[i].coord_y, v_vecino_mas_cercano[i+1].coord_y);
+  }
+  cout << "Distancia vecino mas cercano: " << dist << endl;
+
+  dist = 0;
+  for(int i = 0; i < (int)v_triangles.size()-1;++i)
+  {
+    dist+=distancia2(v_triangles[i].coord_x, v_triangles[i+1].coord_x, v_triangles[i].coord_y, v_triangles[i+1].coord_y);
+  }
+  cout << "Distancia triangles: " << dist << endl;
 
   return(0);
 }

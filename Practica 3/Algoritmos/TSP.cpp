@@ -11,7 +11,7 @@ using namespace std;
 
 double distancia(int x0, int x1, int y0, int y1)
 {
-    double n = sqrt((x1-x0)^2 + (y1-y0)^2);
+    double n = sqrt(pow(x1-x0,2) + pow(y1-y0,2));
     return n;
 }
 
@@ -50,7 +50,7 @@ TSP::TSP(char* cadena)
     bool first=true;
     ifstream archivo(cadena);
     string linea;
-    int num;
+    double num;
     if(archivo.fail())
         cerr << "I couldn't open the file" << endl;
     else{
@@ -74,6 +74,7 @@ TSP::TSP(char* cadena)
             getline(archivo,linea);
         }
     }
+    archivo.close();
 }
 
 void TSP::TSP_vecino_mas_cercano(vector<City>& solucion)
