@@ -15,7 +15,7 @@ double distancia(int x0, int x1, int y0, int y1)
     return n;
 }
 
-TSP::vector<City>::iterator menorDistancia(City c)
+vector<City>::iterator TSP::menorDistancia(City c, vector<City>& candidatos)
 {
     vector<City>::iterator it=candidatos.begin();
     double min;
@@ -23,7 +23,7 @@ TSP::vector<City>::iterator menorDistancia(City c)
     int i=0;
     min=distancia(c.coord_x,(*it).coord_x,c.coord_y,(*it).coord_y);
     ++it;
-    while(it!=it.end())
+    while(it!=candidatos.end())
     {
         n=distancia(c.coord_x,(*it).coord_x,c.coord_y,(*it).coord_y);
         if(n<min)
@@ -76,31 +76,31 @@ TSP::TSP(char* cadena)
     }
 }
 
-TSP::void TSP_vecino_mas_cercano(vector<City>& solucion)
+void TSP::TSP_vecino_mas_cercano(vector<City>& solucion)
 {
 
-  solucion.push_back(ciudades.get(0));
+  solucion.push_back(ciudades[0]);
 
   vector<City> candidatos(ciudades);
   candidatos.erase(candidatos.begin());
 
-  while(solucion.size() < nCiudades)
+  while((int)solucion.size() < nCiudades)
   {
-    vector<City>::iterator it = candidatos.menorDistancia(solucion.at(solucion.size()-1));
+    vector<City>::iterator it = menorDistancia(solucion.at(solucion.size()-1), candidatos);
     solucion.push_back(*it);
     candidatos.erase(it);
   }
-  return solucion;
+
 }
 
-TSP::void TSP_triangles(vector<City>& solucion){
+void TSP::TSP_triangles(vector<City>& solucion){
   list<City> solulista;
 
-  list<City> candidatos(ciudades);
+  list<City> candidatos(ciudades.begin(), ciudades.end());
 
   list<City>::iterator minb = candidatos.begin();
   for (list<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
-    if (*minb.coord_x>*it.coord_x)
+    if ((*minb).coord_x>(*it).coord_x)
       minb = it;
   }
 
@@ -109,7 +109,7 @@ TSP::void TSP_triangles(vector<City>& solucion){
 
   list<City>::iterator maxb = candidatos.begin();
   for (list<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
-    if (*maxb.coord_x<*it.coord_x)
+    if ((*maxb).coord_x<(*it).coord_x)
       maxb = it;
   }
 
@@ -119,7 +119,7 @@ TSP::void TSP_triangles(vector<City>& solucion){
 
   list<City>::iterator maxh = candidatos.begin();
   for (list<City>::iterator it = candidatos.begin(); it != candidatos.end(); it++) {
-    if (*maxh.coord_y<*it.coord_y)
+    if ((*maxh).coord_y<(*it).coord_y)
       maxh = it;
   }
 
@@ -132,47 +132,56 @@ TSP::void TSP_triangles(vector<City>& solucion){
     solulista.insert(mayor_lado,*nearest);
     candidatos.erase(nearest);
   }
+
+  for(list<City>::iterator i = solulista.begin(); i != solulista.end();++i)
+    solucion.push_back(*i);
 }
 
-TSP::list<City>::iterator find_max_edge(list<City> l){
+list<City>::iterator TSP::find_max_edge(list<City> l){
   list<City>::iterator ret = l.begin();
   for (list<City>::iterator it = l.begin();it != l.end();++it) {
-    if (it+1!=l.end()){
-      if(distancia(*ret.coord_x,*(ret+1).coord_x,*ret.coord_y,*(ret+1).coord_y)
-          < distancia(*it.coord_x,*(it+1).coord_x,*it.coord_y,*(it+1).coord_y))
+    list<City>::iterator it2 = it;
+    list<City>::iterator it3 = ret;
+    ++it2;
+    ++it3;
+    if ((it2)!=l.end()){
+      if(distancia((*ret).coord_x,(*it3).coord_x,(*ret).coord_y,(*it3).coord_y)
+          < distancia((*it).coord_x,(*it2).coord_x,(*it).coord_y,(*it2).coord_y))
         ret = it;
     }else{
-      if (distancia(*ret.coord_x,*(ret+1).coord_x,*ret.coord_y,*(ret+1).coord_y)
-          < distancia(*it.coord_x,l.front().coord_x,*it.coord_y,l.front().coord_y))
+      if (distancia((*ret).coord_x,(*it3).coord_x,(*ret).coord_y,(*it3).coord_y)
+          < distancia((*it).coord_x,l.front().coord_x,(*it).coord_y,l.front().coord_y))
         ret = it;
     }
   }
   return ret;
 }
 
-TSP::list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching) {
+list<City>::iterator TSP::find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching) {
   City city1,city2;
-  if (it+1 == it.end()) {
+  list<City>::iterator it2 = it;
+  ++it2;
+  if (it2 == orig.end()) {
     city1 = *it;
-    city2 = orig.front()
+    city2 = orig.front();
   }
   else{
     city1=*it;
-    city2=*(it+1);
+    city2=*(it2);
   }
 
   list<City>::iterator ret = searching.begin();
 
   for (list<City>::iterator it = searching.begin(); it != searching.end(); ++it) {
-    if(distancia(city1.coord_x,*it.coord_x,city1.coord_y,*it.coord_y) + distancia(city2.coord_x,*it.coord_x,city2.coord_y,*it.coord_y)
-      < distancia(city1.coord_x,*ret.coord_x,city1.coord_y,*ret.coord_y) + distancia(city2.coord_x,*ret.coord_x,city2.coord_y,*ret.coord_y))
+    if(distancia(city1.coord_x,(*it).coord_x,city1.coord_y,(*it).coord_y) + distancia(city2.coord_x,(*it).coord_x,city2.coord_y,(*it).coord_y)
+      < distancia(city1.coord_x,(*ret).coord_x,city1.coord_y,(*ret).coord_y) + distancia(city2.coord_x,(*ret).coord_x,city2.coord_y,(*ret).coord_y))
       ret = it;
   }
   return ret;
 }
 
 
-TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
+void TSP::TSP_RandomSwap(int n, vector<City>& solucion){
 	City aux1,aux2,aux3;
 	srand(time(0));
 	int j,k;
@@ -184,12 +193,14 @@ TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
 		j = nCiudades*rand()/(RAND_MAX + 1.0);
 		do{
 			k = (nCiudades)*rand()/(RAND_MAX + 1.0);
-		}while((j > nCiudades - 3 && k < 3)||(k > nCiudades - 3 && j < 3))
+		}while((j > nCiudades - 3 && k < 3)||(k > nCiudades - 3 && j < 3));
 		j = j%nCiudades;
 		k = k%nCiudades;
 		distlueg = distant = 0;
 		for(vector<City>::iterator it = ciudades.begin(); it!=ciudades.end()-1;it++){
-			distant += distancia((*it).coord_x,*(it+1).coord_x,(*it).coord_y,*(it+1).coord_y);
+      vector<City>::iterator it2 = it;
+      ++it2;
+			distant += distancia((*it).coord_x,(*it2).coord_x,(*it).coord_y,(*it2).coord_y);
 		}
 		distant += distancia(ciudades[0].coord_x,ciudades[nCiudades-1].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_y);
 			aux1 = ciudades[j];
@@ -202,7 +213,9 @@ TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
 			ciudades[k+1] = aux2;
 			ciudades[k+2] = aux3;
 		for(vector<City>::iterator it = ciudades.begin(); it!=ciudades.end()-1;it++){
-			distlueg += distancia((*it).coord_x,*(it+1).coord_x,(*it).coord_y,*(it+1).coord_y);
+      vector<City>::iterator it2 = it;
+      ++it2;
+			distlueg += distancia((*it).coord_x,(*it2).coord_x,(*it).coord_y,(*it2).coord_y);
 		}
 		distlueg += distancia(ciudades[0].coord_x,ciudades[nCiudades-1].coord_x,ciudades[0].coord_y,ciudades[nCiudades-1].coord_y);
 		if(distant < distlueg){
@@ -221,10 +234,10 @@ TSP::void TSP_RandomSwap(int n, vector<City>& solucion){
 }
 
 
-TSP::void TSP_WriteBack(ofstream& os, vector<City> sol)
+void TSP::TSP_WriteBack(ofstream& os, vector<City> sol)
 {
   os << "DIMENSION: " << sol.size() << endl;
-  for(int i = 1;i<=sol.size();++i)
+  for(int i = 1;i<=(int)sol.size();++i)
   {
     os << i << " " << sol[i-1].coord_x << " " << sol[i-1].coord_y << endl;
   }

@@ -20,7 +20,7 @@ class TSP {
     private:
         int nCiudades;
         vector<City> ciudades;
-        vector<City>::iterator menorDistancia(City c);
+        vector<City>::iterator menorDistancia(City c, vector<City>& candidatos);
         list<City>::iterator find_max_edge(list<City> l);
         list<City>::iterator find_nearest_point(list<City> orig, list<City>::iterator it, list<City> searching);
 
