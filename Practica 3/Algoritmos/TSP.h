@@ -11,7 +11,7 @@ struct City{
     int ciudad;
     double coord_x;
     double coord_y;
-    City& operator=(const City&);
+    //City& operator=(const City&);
 };
 
 
@@ -33,6 +33,7 @@ class TSP {
 
         pair<double,vector<City>::iterator> DevuelveMenorDistancia(City c, vector<City>& candidatos);
         void Dijsktra(vector<City>& res);
+        void MejorInsercion(City c, vector<City>& resul, vector<City>::iterator& mejor);
         void TSP_vecino_mas_cercano(vector<City>& vec);
         void TSP_triangles(vector<City>& solucion);
         void TSP_RandomSwap(int n, vector<City>& solucion);

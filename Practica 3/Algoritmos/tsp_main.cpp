@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
   t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
   t_triangles.TSP_triangles(v_triangles);
   t_dijsktra.Dijsktra(v_dijsktra);
-  t_random_swap.TSP_RandomSwap(100,v_random_swap);
+  t_random_swap.TSP_RandomSwap(1000,v_random_swap);
 
   ofstream f_vecino_mas_cercano("sol_vecino_mas_cercano.tsp");
   ofstream f_triangles("sol_triangles.tsp");

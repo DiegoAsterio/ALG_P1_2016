@@ -18,10 +18,9 @@ double distancia(int x0, int x1, int y0, int y1)
 
 vector<City>::iterator TSP::menorDistancia(City c, vector<City>& candidatos)
 {
-    vector<City>::iterator it=candidatos.begin();
+    vector<City>::iterator it=candidatos.begin(), min_iter = it;
     double min;
     double n;
-    int i=0;
     min=distancia(c.coord_x,(*it).coord_x,c.coord_y,(*it).coord_y);
     ++it;
     while(it!=candidatos.end())
@@ -30,19 +29,12 @@ vector<City>::iterator TSP::menorDistancia(City c, vector<City>& candidatos)
         if(n<min)
         {
             min=n;
-            i++;
+            min_iter = it;
         }
         ++it;
     }
-    int aux=0;
-    it=candidatos.begin();
-    while(aux<i)
-    {
-        ++it;
-        ++aux;
-    }
 
-    return it;
+    return min_iter;
 
 }
 
@@ -78,7 +70,7 @@ TSP::TSP(char* cadena)
     ciudades.pop_back();
     archivo.close();
 }
-
+/*
 City& City::operator=(const City& other){
   if(this != &other){
     this->ciudad = other.ciudad;
@@ -87,7 +79,7 @@ City& City::operator=(const City& other){
   }
   return *this;
 }
-
+*/
 void TSP::TSP_vecino_mas_cercano(vector<City>& solucion)
 {
 
@@ -136,7 +128,7 @@ void TSP::TSP_triangles(vector<City>& solucion){
 
   solucion.push_back(*maxh);
   candidatos.erase(maxh);
-City aux;
+  City aux;
   while (!candidatos.empty()){
     vector<City>::iterator mayor_lado, nearest;
     find_max_edge(solucion, mayor_lado);
@@ -283,8 +275,51 @@ void TSP::Dijsktra(vector<City>& res)
         dist = f.first;
       }
     }
-    res.push_back(*min_dist);
+    vector<City>::iterator mejor;
+    MejorInsercion(*min_dist,res,mejor);
+    if(mejor==res.end())
+      res.push_back(*min_dist);
+    else
+      res.insert(mejor, *min_dist);
     candidatos.erase(min_dist);
+  }
+}
+
+void TSP::MejorInsercion(City c, vector<City>& resul, vector<City>::iterator& mejor)
+{
+  if(resul.size()==1)
+  {
+    mejor = resul.end();
+  }
+  else
+  {
+    mejor = resul.end();
+    double dis = INT_MAX;
+    vector<City>::iterator it = resul.begin();
+    while(it!=resul.end())
+    {
+      double nueva_dis=distancia((*it).coord_x,c.coord_x,(*it).coord_y,c.coord_y);
+      vector<City>::iterator it2=it, it3;
+      it3=it;
+      ++it;
+      if(it!=resul.end())
+      {
+        nueva_dis+=distancia((*it).coord_x,c.coord_x,(*it).coord_y,c.coord_y);
+        nueva_dis-=distancia((*it).coord_x,(*it2).coord_x,(*it).coord_y,(*it2).coord_y);
+      }
+      else{
+        it2=resul.begin();
+        nueva_dis+=distancia((*(resul.begin())).coord_x,c.coord_x,(*(resul.begin())).coord_y,c.coord_y);
+        nueva_dis-=distancia((*it3).coord_x,(*it2).coord_x,(*it3).coord_y,(*it2).coord_y);
+      }
+      if(nueva_dis<dis)
+      {
+        mejor = it;
+        dis = nueva_dis;
+      }
+      if(it!=resul.end())
+        ++it;
+    }
   }
 }
 
