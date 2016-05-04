@@ -134,7 +134,10 @@ void TSP::TSP_triangles(vector<City>& solucion){
     find_max_edge(solucion, mayor_lado);
     find_nearest_point(solucion,mayor_lado,candidatos, nearest);
     aux = *nearest;
-    solucion.insert(mayor_lado,aux);
+    vector<City>::iterator insertar;
+    MejorInsercion(aux, solucion, insertar);
+    //solucion.insert(mayor_lado,aux);
+    solucion.insert(insertar,aux);
     candidatos.erase(nearest);
   }
 
