@@ -3,7 +3,7 @@ INC = Algoritmos
 OBJ = obj
 BIN = bin
 CXX = g++
-CPPFLAGS = -Wall -g -I$(INC)/ -c
+CPPFLAGS = -Wall -O3 -g -I$(INC)/ -c
 
 
 all: $(BIN)/tsp_main

@@ -25,9 +25,13 @@ int main(int argc, char* argv[])
   vector<City> v_vecino_mas_cercano, v_triangles, v_random_swap, v_dijsktra;
 
   t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
+  cout << "Fin vecino mas cercano." << endl;
   t_triangles.TSP_triangles(v_triangles);
+  cout << "Fin triangles." << endl;
   t_dijsktra.Dijsktra(v_dijsktra);
+  cout << "Fin Dijsktra." << endl;
   t_random_swap.TSP_RandomSwap(1000,v_random_swap);
+  cout << "Fin random swap." << endl;
 
   ofstream f_vecino_mas_cercano("sol_vecino_mas_cercano.tsp");
   ofstream f_triangles("sol_triangles.tsp");
