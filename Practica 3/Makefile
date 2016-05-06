@@ -1,9 +1,9 @@
 SRC = Algoritmos
 INC = Algoritmos
-OBJ = obj
-BIN = bin
-CXX = g++
-CPPFLAGS = -Wall -O3 -g -I$(INC)/ -c
+OBJ = ./obj
+BIN = ./bin
+CXX = g++ -fopenmp
+CPPFLAGS = -Wall -O3 -fopenmp -g -I$(INC)/ -c
 
 
 all: $(BIN)/tsp_main

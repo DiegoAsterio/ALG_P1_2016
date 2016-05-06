@@ -1,9 +1,9 @@
 SRC = Algoritmos
 INC = Algoritmos
-OBJ = obj
-BIN = bin
-CXX = g++
-CPPFLAGS = -Wall -g -I$(INC)/ -c
+OBJ = ./obj
+BIN = ./bin
+CXX = g++ -fopenmp
+CPPFLAGS = -Wall -fopenmp -g -I$(INC)/ -c
 
 
 all: $(BIN)/tsp_main
@@ -14,7 +14,7 @@ $(BIN)/tsp_main: $(OBJ)/TSP.o $(OBJ)/tsp_main.o $(INC)/TSP.h
 	$(CXX) -o $(BIN)/tsp_main $(OBJ)/tsp_main.o $(OBJ)/TSP.o
 
 $(OBJ)/tsp_main.o: $(SRC)/tsp_main.cpp $(INC)/TSP.h
-	$(CXX) -fopenmp $(CPPFLAGS)  -o $(OBJ)/tsp_main.o $(SRC)/tsp_main.cpp
+	$(CXX) $(CPPFLAGS)  -o $(OBJ)/tsp_main.o $(SRC)/tsp_main.cpp
 
 $(OBJ)/TSP.o: $(SRC)/TSP.cpp $(INC)/TSP.h
 	$(CXX) $(CPPFLAGS) -o $(OBJ)/TSP.o $(SRC)/TSP.cpp

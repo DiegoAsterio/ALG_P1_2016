@@ -90,6 +90,7 @@ void TSP::TSP_vecino_mas_cercano(vector<City>& solucion)
 
   while((int)solucion.size() < nCiudades)
   {
+    cout << "El tamaño de candidatos en vecinos es ---> " << (int)candidatos.size() << endl;
     vector<City>::iterator it = menorDistancia(solucion.at(solucion.size()-1), candidatos);
     solucion.push_back(*it);
     candidatos.erase(it);
@@ -194,6 +195,7 @@ void TSP::TSP_RandomSwap(int n, vector<City>& solucion){
 		solucion.push_back(*it);
 	}
 	for(int i = 0; i < n; i++){
+    cout << "Iteracion Random Swap ---> " << i << endl;
 		j = nCiudades*rand()/(RAND_MAX + 1.0);
 		do{
 			k = (nCiudades)*rand()/(RAND_MAX + 1.0);

@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include "TSP.h"
+#include <omp.h>
 
 using namespace std;
 
@@ -10,6 +11,16 @@ double distancia2(int x0, int x1, int y0, int y1)
 {
     double n = sqrt(pow(x1-x0,2) + pow(y1-y0,2));
     return n;
+}
+
+double DistanciaRecorrido(vector<City>& vec)
+{
+  double dist = 0;
+  for(int i = 0; i < (int)vec.size()-1;++i)
+  {
+    dist+=distancia2(vec[i].coord_x, vec[i+1].coord_x, vec[i].coord_y, vec[i+1].coord_y);
+  }
+  return dist;
 }
 
 int main(int argc, char* argv[])
@@ -20,58 +31,46 @@ int main(int argc, char* argv[])
     return(1);
   }
 
-  TSP t_vecino_mas_cercano(argv[1]), t_triangles(argv[1]), t_random_swap(argv[1]), t_dijsktra(argv[1]);
-
   vector<City> v_vecino_mas_cercano, v_triangles, v_random_swap, v_dijsktra;
 
-  t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
-  cout << "Fin vecino mas cercano." << endl;
-  t_triangles.TSP_triangles(v_triangles);
-  cout << "Fin triangles." << endl;
-  t_dijsktra.Dijsktra(v_dijsktra);
-  cout << "Fin Dijsktra." << endl;
-  t_random_swap.TSP_RandomSwap(1000,v_random_swap);
-  cout << "Fin random swap." << endl;
-
-  ofstream f_vecino_mas_cercano("sol_vecino_mas_cercano.tsp");
-  ofstream f_triangles("sol_triangles.tsp");
-  ofstream f_random_swap("sol_random_swap.tsp");
-  ofstream f_dijsktra("sol_dijsktra.tsp");
-
-
-  t_vecino_mas_cercano.TSP_WriteBack(f_vecino_mas_cercano, v_vecino_mas_cercano);
-  t_triangles.TSP_WriteBack(f_triangles, v_triangles);
-  t_random_swap.TSP_WriteBack(f_random_swap, v_random_swap);
-  t_dijsktra.TSP_WriteBack(f_dijsktra, v_dijsktra);
-
-
-  double dist = 0;
-  for(int i = 0; i < (int)v_random_swap.size()-1;++i)
+  #pragma omp parallel
   {
-    dist+=distancia2(v_random_swap[i].coord_x, v_random_swap[i+1].coord_x, v_random_swap[i].coord_y, v_random_swap[i+1].coord_y);
+    #pragma omp sections
+    {
+      #pragma omp section
+      {
+        TSP t_vecino_mas_cercano(argv[1]);
+        t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
+        ofstream f_vecino_mas_cercano("sol_vecino_mas_cercano.tsp");
+        t_vecino_mas_cercano.TSP_WriteBack(f_vecino_mas_cercano, v_vecino_mas_cercano);
+        cout << "Distancia vecino mas cercano: " << DistanciaRecorrido(v_vecino_mas_cercano) << endl;
+      }
+      /*#pragma omp section
+      {
+        TSP t_random_swap(argv[1]);
+        t_random_swap.TSP_RandomSwap(10000,v_random_swap);
+        ofstream f_random_swap("sol_random_swap.tsp");
+        t_random_swap.TSP_WriteBack(f_random_swap, v_random_swap);
+        cout << "Distancia random swap: " << DistanciaRecorrido(v_random_swap) << endl;
+      }*/
+      /*#pragma omp section
+      {
+        TSP t_triangles(argv[1]);
+        t_triangles.TSP_triangles(v_triangles);
+        ofstream f_triangles("sol_triangles.tsp");
+        t_triangles.TSP_WriteBack(f_triangles, v_triangles);
+        cout << "Distancia triangles: " << DistanciaRecorrido(v_triangles) << endl;
+      }*/
+      /*#pragma omp section
+      {
+        TSP t_dijsktra(argv[1]);
+        t_dijsktra.Dijsktra(v_dijsktra);
+        ofstream f_dijsktra("sol_dijsktra.tsp");
+        t_dijsktra.TSP_WriteBack(f_dijsktra, v_dijsktra);
+        cout << "Distancia Dijsktra: " << DistanciaRecorrido(v_dijsktra) << endl;
+      }*/
+    }
   }
-  cout << "Distancia random swap: " << dist << endl;
-
-  dist = 0;
-  for(int i = 0; i < (int)v_vecino_mas_cercano.size()-1;++i)
-  {
-    dist+=distancia2(v_vecino_mas_cercano[i].coord_x, v_vecino_mas_cercano[i+1].coord_x, v_vecino_mas_cercano[i].coord_y, v_vecino_mas_cercano[i+1].coord_y);
-  }
-  cout << "Distancia vecino mas cercano: " << dist << endl;
-
-  dist = 0;
-  for(int i = 0; i < (int)v_triangles.size()-1;++i)
-  {
-    dist+=distancia2(v_triangles[i].coord_x, v_triangles[i+1].coord_x, v_triangles[i].coord_y, v_triangles[i+1].coord_y);
-  }
-  cout << "Distancia triangles: " << dist << endl;
-
-  dist = 0;
-  for(int i = 0; i < (int)v_dijsktra.size()-1;++i)
-  {
-    dist+=distancia2(v_dijsktra[i].coord_x, v_dijsktra[i+1].coord_x, v_dijsktra[i].coord_y, v_dijsktra[i+1].coord_y);
-  }
-  cout << "Distancia dijsktra: " << dist << endl;
 
   return(0);
 }
