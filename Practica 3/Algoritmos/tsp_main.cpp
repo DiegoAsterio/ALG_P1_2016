@@ -43,34 +43,34 @@ int main(int argc, char* argv[])
         t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecino_mas_cercano);
         ofstream f_vecino_mas_cercano("sol_vecino_mas_cercano.tsp");
         t_vecino_mas_cercano.TSP_WriteBack(f_vecino_mas_cercano, v_vecino_mas_cercano);
-        cout << "Distancia vecino mas cercano: " << DistanciaRecorrido(v_vecino_mas_cercano) << endl;
       }
-      /*#pragma omp section
+      #pragma omp section
       {
         TSP t_random_swap(argv[1]);
         t_random_swap.TSP_RandomSwap(10000,v_random_swap);
         ofstream f_random_swap("sol_random_swap.tsp");
         t_random_swap.TSP_WriteBack(f_random_swap, v_random_swap);
-        cout << "Distancia random swap: " << DistanciaRecorrido(v_random_swap) << endl;
-      }*/
-      /*#pragma omp section
+      }
+      #pragma omp section
       {
         TSP t_triangles(argv[1]);
         t_triangles.TSP_triangles(v_triangles);
         ofstream f_triangles("sol_triangles.tsp");
         t_triangles.TSP_WriteBack(f_triangles, v_triangles);
-        cout << "Distancia triangles: " << DistanciaRecorrido(v_triangles) << endl;
-      }*/
-      /*#pragma omp section
+      }
+      #pragma omp section
       {
         TSP t_dijsktra(argv[1]);
         t_dijsktra.Dijsktra(v_dijsktra);
         ofstream f_dijsktra("sol_dijsktra.tsp");
         t_dijsktra.TSP_WriteBack(f_dijsktra, v_dijsktra);
-        cout << "Distancia Dijsktra: " << DistanciaRecorrido(v_dijsktra) << endl;
-      }*/
+      }
     }
   }
+  cout << "Distancia vecino mas cercano: " << DistanciaRecorrido(v_vecino_mas_cercano) << endl;
+  cout << "Distancia random swap: " << DistanciaRecorrido(v_random_swap) << endl;
+  cout << "Distancia triangles: " << DistanciaRecorrido(v_triangles) << endl;
+  cout << "Distancia Dijsktra: " << DistanciaRecorrido(v_dijsktra) << endl;
 
   return(0);
 }
