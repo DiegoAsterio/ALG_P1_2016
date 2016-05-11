@@ -234,6 +234,7 @@ void TSP::TSP_RandomSwap(int n, vector<City>& solucion){
 			ciudades[k+2] = aux3;
 		}
 	}
+  solucion.push_back(solucion[0]);
 
 }
 
