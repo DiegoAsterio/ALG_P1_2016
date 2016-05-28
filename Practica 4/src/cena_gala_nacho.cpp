@@ -62,6 +62,7 @@ void ColocaComensales(short int** matriz, int n_comensales, list<int>& resultado
 
 int main(int argc, char*argv[])
 {
+  
   if(argc<2)
   {
     cout << "El formato es <numero comensales>" << endl;
