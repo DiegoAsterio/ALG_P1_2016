@@ -20,9 +20,9 @@ void ColocaComensales(short int** matriz, int n_comensales, list<int>& resultado
 
       //Hallo el iterador de antes de end.
       list<int>::iterator antes_end = resultado_final.begin();
-      for(list<int>::iterator iter = resultado_final.begin(); iter!=resultado_final.end(); ++iter)
+      for(list<int>::iterator iter2 = resultado_final.begin(); iter2!=resultado_final.end(); ++iter2)
       {
-        list<int>::iterator aux = iter;
+        list<int>::iterator aux = iter2;
         ++aux;
         if(aux!=resultado_final.end())
           antes_end = aux;
@@ -79,13 +79,40 @@ int main(int argc, char*argv[])
 
   srand(time(NULL));
   for(int i = 0; i < num_comensales; ++i)
-    for(int j = 0; j < num_comensales; ++j)
-      matriz_adyacencia[i][j] = rand() % 101;
+    for(int j = i; j < num_comensales; ++j)
+    {
+      if(j==i)
+        matriz_adyacencia[i][j]=0;
+      else
+        matriz_adyacencia[i][j] = rand() % 101;
+    }
+
+  for(int i = 0; i < num_comensales; ++i)
+    for(int j = i; j < num_comensales; ++j)
+    {
+      if(j==i)
+        matriz_adyacencia[j][i]=0;
+      else
+        matriz_adyacencia[j][i] = matriz_adyacencia[i][j];
+    }
 
   //Resolución del problema.
   list<int> mesa_comensales;
   ColocaComensales(matriz_adyacencia,num_comensales,mesa_comensales);
-  
+
+  cout << "Matrizz de adyacencia:" << endl;
+  for(int i = 0; i < num_comensales;i++)
+  {
+    for(int j = 0; j < num_comensales;j++)
+    {
+      cout << matriz_adyacencia[i][j] << " ";
+    }
+    cout << endl;
+  }
+  cout << "Orden de comensales:" << endl;
+  for(list<int>::iterator it = mesa_comensales.begin();it!=mesa_comensales.end();++it)
+    cout << *it << " ";
+  cout << endl;
 
 
 }
