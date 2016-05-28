@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <time.h>
 #include <list>
+#include <chrono>
 
 using namespace std;
 
@@ -29,16 +30,14 @@ void ColocaComensales(short int** matriz, int n_comensales, list<int>& resultado
       }
 
       //Asigno los pesos de cada comensal para sus acompañantes a izquierdas y derechas.
+      //La lista la considero circular, el primero esta al lado del último y viceversa.
       int afinidad_izq = 0, afinidad_der = 0;
-      if(iter == resultado_final.begin())
+      if(iter == resultado_final.begin() || iter == antes_end)
       {
-        afinidad_izq = 100;
-        afinidad_der = ((int)resultado_final.size()==1)?100:matriz[i][*iter];
-      }
-      else if (iter == antes_end)
-      {
-        afinidad_izq = ((int)resultado_final.size()==1)?100:matriz[i][*iter];
-        afinidad_der = 100;
+        list<int>::iterator aux = iter;
+        ++aux;
+        afinidad_izq = matriz[i][*iter];
+        afinidad_der = (aux!=resultado_final.end())?matriz[i][*aux]:matriz[i][resultado_final.front()];
       }
       else
       {
@@ -51,7 +50,10 @@ void ColocaComensales(short int** matriz, int n_comensales, list<int>& resultado
       //Cambio mejor afinidad y mejor posicion si he encontrado un lugar mejor donde insertar;
       int puntuacion = afinidad_der + afinidad_izq;
       if(puntuacion>mejor_afinidad)
+      {
         mejor_posicion = iter;
+        mejor_afinidad = puntuacion;
+      }
       if(puntuacion==200)
         break;
     }
@@ -60,9 +62,11 @@ void ColocaComensales(short int** matriz, int n_comensales, list<int>& resultado
   }
 }
 
+using namespace std::chrono;
+
 int main(int argc, char*argv[])
 {
-  
+
   if(argc<2)
   {
     cout << "El formato es <numero comensales>" << endl;
@@ -76,7 +80,8 @@ int main(int argc, char*argv[])
   for(int i = 0; i < num_comensales;++i)
     matriz_adyacencia[i] = new short int[num_comensales];
 
-  //Rellenando la maatriz de adyacencia.
+  //Rellenando la maatriz de adyacencia. La afinidad con uno mismo es 0 para
+  //evitar una colocación trivial.
 
   srand(time(NULL));
   for(int i = 0; i < num_comensales; ++i)
@@ -98,10 +103,13 @@ int main(int argc, char*argv[])
     }
 
   //Resolución del problema.
+  high_resolution_clock::time_point t_antes, t_despues;
   list<int> mesa_comensales;
+  t_antes = high_resolution_clock::now();
   ColocaComensales(matriz_adyacencia,num_comensales,mesa_comensales);
+  t_despues = high_resolution_clock::now();
 
-  cout << "Matrizz de adyacencia:" << endl;
+/*  cout << "Matrizz de adyacencia:" << endl;
   for(int i = 0; i < num_comensales;i++)
   {
     for(int j = 0; j < num_comensales;j++)
@@ -113,7 +121,9 @@ int main(int argc, char*argv[])
   cout << "Orden de comensales:" << endl;
   for(list<int>::iterator it = mesa_comensales.begin();it!=mesa_comensales.end();++it)
     cout << *it << " ";
-  cout << endl;
+  cout << endl;*/
 
+  duration<double> transcurrido = duration_cast<duration<double> >(t_despues-t_antes);
+  cout << num_comensales << " " << transcurrido.count() << "\n";
 
 }
