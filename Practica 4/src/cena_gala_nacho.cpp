@@ -62,6 +62,23 @@ void ColocaComensales(short int** matriz, int n_comensales, list<int>& resultado
   }
 }
 
+void Imprime(int num_comensales, short int** matriz_adyacencia, list<int> mesa_comensales)
+{
+  cout << "Matrizz de adyacencia:" << endl;
+  for(int i = 0; i < num_comensales;i++)
+  {
+    for(int j = 0; j < num_comensales;j++)
+    {
+      cout << matriz_adyacencia[i][j] << " ";
+    }
+    cout << endl;
+  }
+  cout << "Orden de comensales:" << endl;
+  for(list<int>::iterator it = mesa_comensales.begin();it!=mesa_comensales.end();++it)
+    cout << *it << " ";
+  cout << endl;
+}
+
 using namespace std::chrono;
 
 int main(int argc, char*argv[])
@@ -109,19 +126,7 @@ int main(int argc, char*argv[])
   ColocaComensales(matriz_adyacencia,num_comensales,mesa_comensales);
   t_despues = high_resolution_clock::now();
 
-/*  cout << "Matrizz de adyacencia:" << endl;
-  for(int i = 0; i < num_comensales;i++)
-  {
-    for(int j = 0; j < num_comensales;j++)
-    {
-      cout << matriz_adyacencia[i][j] << " ";
-    }
-    cout << endl;
-  }
-  cout << "Orden de comensales:" << endl;
-  for(list<int>::iterator it = mesa_comensales.begin();it!=mesa_comensales.end();++it)
-    cout << *it << " ";
-  cout << endl;*/
+  //Imprime(num_comensales, matriz_adyacencia, mesa_comensales);
 
   duration<double> transcurrido = duration_cast<duration<double> >(t_despues-t_antes);
   cout << num_comensales << " " << transcurrido.count() << "\n";
