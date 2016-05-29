@@ -93,3 +93,348 @@ correlation matrix of the fit parameters:
 c0              1.000 
 c1             -0.968  1.000 
 c2              0.748 -0.868  1.000 
+
+
+*******************************************************************************
+Sun May 29 18:26:49 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_nacho.dat"
+        format = z
+        #datapoints = 500
+        residuals are weighted equally (unit weight)
+
+function used for fitting: lineal(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.06008e+07       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 102.371
+
+initial set of free parameter values
+
+l0              = 1
+l1              = 1
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0477125
+rel. change during last iteration : -2.71132e-10
+
+degrees of freedom    (FIT_NDF)                        : 498
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00978817
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.58083e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+l0              = 0.000318649      +/- 6.066e-06    (1.904%)
+l1              = -0.0175958       +/- 0.0008781    (4.99%)
+
+
+correlation matrix of the fit parameters:
+
+               l0     l1     
+l0              1.000 
+l1             -0.867  1.000 
+
+
+*******************************************************************************
+Sun May 29 18:26:49 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_nacho.dat"
+        format = z
+        #datapoints = 500
+        residuals are weighted equally (unit weight)
+
+function used for fitting: cuadratica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 3.9851e+11        delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 16218.3
+
+initial set of free parameter values
+
+c0              = 1
+c1              = 1
+c2              = 1
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 0.00133636
+rel. change during last iteration : -1.46036e-15
+
+degrees of freedom    (FIT_NDF)                        : 497
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00163977
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.68885e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+c0              = 2.06746e-06      +/- 1.574e-08    (0.7614%)
+c1              = -0.000200283     +/- 4.08e-06     (2.037%)
+c2              = 0.00419934       +/- 0.0002218    (5.281%)
+
+
+correlation matrix of the fit parameters:
+
+               c0     c1     c2     
+c0              1.000 
+c1             -0.968  1.000 
+c2              0.748 -0.868  1.000 
+
+
+*******************************************************************************
+Sun May 29 18:46:26 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_nacho.dat"
+        format = z
+        #datapoints = 750
+        residuals are weighted equally (unit weight)
+
+function used for fitting: lineal(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.59011e+07       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 102.371
+
+initial set of free parameter values
+
+l0              = 1
+l1              = 1
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0719106
+rel. change during last iteration : -3.27871e-11
+
+degrees of freedom    (FIT_NDF)                        : 748
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00980495
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.61371e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+l0              = 0.000318954      +/- 4.961e-06    (1.555%)
+l1              = -0.0176277       +/- 0.0007182    (4.074%)
+
+
+correlation matrix of the fit parameters:
+
+               l0     l1     
+l0              1.000 
+l1             -0.867  1.000 
+
+
+*******************************************************************************
+Sun May 29 18:46:26 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_nacho.dat"
+        format = z
+        #datapoints = 750
+        residuals are weighted equally (unit weight)
+
+function used for fitting: cuadratica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.97765e+11       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 16218.3
+
+initial set of free parameter values
+
+c0              = 1
+c1              = 1
+c2              = 1
+
+After 7 iterations the fit converged.
+final sum of squares of residuals : 0.00198911
+rel. change during last iteration : -2.27135e-06
+
+degrees of freedom    (FIT_NDF)                        : 747
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00163181
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.6628e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+c0              = 2.07276e-06      +/- 1.279e-08    (0.6171%)
+c1              = -0.000201308     +/- 3.315e-06    (1.647%)
+c2              = 0.00422327       +/- 0.0001802    (4.267%)
+
+
+correlation matrix of the fit parameters:
+
+               c0     c1     c2     
+c0              1.000 
+c1             -0.968  1.000 
+c2              0.748 -0.868  1.000 
+
+
+*******************************************************************************
+Sun May 29 18:46:26 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_backtracking_cuentaperdida.dat"
+        format = z
+        #datapoints = 24
+        residuals are weighted equally (unit weight)
+
+function used for fitting: factorial(x)
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Sun May 29 18:49:13 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_nacho.dat"
+        format = z
+        #datapoints = 1000
+        residuals are weighted equally (unit weight)
+
+function used for fitting: lineal(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 2.12015e+07       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 102.371
+
+initial set of free parameter values
+
+l0              = 1
+l1              = 1
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0966026
+rel. change during last iteration : -6.93382e-12
+
+degrees of freedom    (FIT_NDF)                        : 998
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00983851
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.67962e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+l0              = 0.000319088      +/- 4.311e-06    (1.351%)
+l1              = -0.0176435       +/- 0.0006241    (3.537%)
+
+
+correlation matrix of the fit parameters:
+
+               l0     l1     
+l0              1.000 
+l1             -0.867  1.000 
+
+
+*******************************************************************************
+Sun May 29 18:49:13 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_nacho.dat"
+        format = z
+        #datapoints = 1000
+        residuals are weighted equally (unit weight)
+
+function used for fitting: cuadratica(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 7.9702e+11        delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 16218.3
+
+initial set of free parameter values
+
+c0              = 1
+c1              = 1
+c2              = 1
+
+After 7 iterations the fit converged.
+final sum of squares of residuals : 0.00285152
+rel. change during last iteration : -5.8175e-07
+
+degrees of freedom    (FIT_NDF)                        : 997
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00169118
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.8601e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+c0              = 2.07856e-06      +/- 1.148e-08    (0.5523%)
+c1              = -0.000202629     +/- 2.975e-06    (1.468%)
+c2              = 0.00426864       +/- 0.0001617    (3.789%)
+
+
+correlation matrix of the fit parameters:
+
+               c0     c1     c2     
+c0              1.000 
+c1             -0.968  1.000 
+c2              0.748 -0.868  1.000 
+
+
+*******************************************************************************
+Sun May 29 18:49:13 2016
+
+
+FIT:    data read from "./data/Nacho/cena_gala_backtracking_cuentaperdida.dat"
+        format = z
+        #datapoints = 36
+        residuals are weighted equally (unit weight)
+
+function used for fitting: factorial(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 6.93147e+17       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 9.81175e+07
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 2767.14
+rel. change during last iteration : -1.84432e-09
+
+degrees of freedom    (FIT_NDF)                        : 34
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.02145
+variance of residuals (reduced chisquare) = WSSR/ndf   : 81.3866
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 8.0312e-08       +/- 1.141e-08    (14.21%)
+b               = 1                +/- 1.584        (158.4%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      
+a               1.000 
+b              -0.314  1.000 
