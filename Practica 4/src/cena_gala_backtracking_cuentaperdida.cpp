@@ -15,7 +15,7 @@ int afinidadNoConseguida(list<int> rama, int* afinidades, int n){
 		itnext++;
 		res += afinidades[(*it)*n+(*(itnext))];
 	}
-	res += afinidades[(*(rama.begin()))*n+(*(rama.end()))];
+	res += afinidades[(*(rama.begin()))*n+(*(prev(rama.end())))];
 	return 100*rama.size() - res;
 }
 
