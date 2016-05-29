@@ -4,9 +4,8 @@
 #include <time.h>
 #include <stdlib.h>
 #include <iostream>
-#include <chrono>
 using namespace std;
-using namespace std::chrono;
+
 //Cuenta la afinidad que ya has perdido cogiendo la distribución por ahora hecha en rama
 int afinidadNoConseguida(list<int> rama, int* afinidades, int n){
 	int res = 0;
@@ -35,7 +34,6 @@ list<int> backtracking(list<int> rama, int* afinidades, list<int> sinusar, int &
 			list<int>::iterator it;
 			list<int> res;
 			list<int> aux2;
-			int i = 0;
 			for(it = sinusar.begin(); it != sinusar.end(); it++){	// Crea una rama por cada persona que no este sentada
 				int aux = *it;
 				it = sinusar.erase(it);
@@ -51,29 +49,13 @@ list<int> backtracking(list<int> rama, int* afinidades, list<int> sinusar, int &
 		}
 	}
 }
-
-void Imprime(int* afinidades, int n, int NoAfinidad, list<int> rama)
-{
-	for(int i = 0; i < n; i++){		// IMPRIME MATRIZ DE AFINIDADES
-		for(int j = 0; j < n; j++){
-			cout << afinidades[i*n+j] << " ";
-		}
-		cout << endl ;
-	}
-	cout << endl << "La solucion es:" << endl;   // IMPRIME LA MESA
-	for(list<int>::iterator it = rama.begin(); it != rama.end(); it++){
-		cout << *it << " - " ;
-	}
-	cout << endl << "La afinidad conseguida es " << 100*n - NoAfinidad << endl;   // IMPREME LA AFINIDAD CONSEGUIDA
-}
-
 int main(int argc, char* argv[]){
 	if (argc<2)
 	{
-		cout << "La sintaxis es <num_personas>" << endl;
+		cerr << "La sintaxis es <num_personas>" << endl;
 		return(1);
 	}
-	srand(time(0));
+	srand(time(NULL));
 	int n = atoi(argv[1]);
 	int* afinidades = new int[n*n];
 	list<int> rama ;
@@ -89,15 +71,19 @@ int main(int argc, char* argv[]){
 	rama.push_back(0);   // La mesa es redonda, el primer elemento da igual el que sea.
 	sinusar.pop_front();
 
-	high_resolution_clock::time_point t_antes, t_despues;
 	int NoAfinidad = n*100;
-
-	t_antes = high_resolution_clock::now();
 	rama = backtracking(rama, afinidades, sinusar, NoAfinidad, n);
-	t_despues = high_resolution_clock::now();
 
-	Imprime(afinidades, n, NoAfinidad, rama);
-	duration<double> transcurrido = duration_cast<duration<double> >(t_despues-t_antes);
-  cout << n << " " << transcurrido.count() << "\n";
+	for(int i = 0; i < n; i++){		// IMPRIME MATRIZ DE AFINIDADES
+		for(int j = 0; j < n; j++){
+			cout << afinidades[i*n+j] << " ";
+		}
+		cout << endl ;
+	}
+	cout << endl << "La solucion es:" << endl;   // IMPRIME LA MESA
+	for(list<int>::iterator it = rama.begin(); it != rama.end(); it++){
+		cout << *it << " - " ;
+	}
+	cout << endl << "La afinidad conseguida es " << 100*n - NoAfinidad << endl;   // IMPREME LA AFINIDAD CONSEGUIDA
 
 }
