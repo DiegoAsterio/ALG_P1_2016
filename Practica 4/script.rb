@@ -6,5 +6,7 @@ puts "Ejecutando cena_gala_nacho..."
   if(x%50==0)
     puts "Iteracion: " + x.to_s
   end
-  system( "./bin/cena_gala_nacho " + x.to_s + " >> ./data/cena_gala_nacho_" + ARGV[0].to_s + ".dat")
+  system( "./bin/cena_gala_nacho " + x.to_s + " >> ./data/" + ARGV[0].to_s + "/cena_gala_nacho" + ".dat")
 end
+puts "Generando gráfica de cena_gala_nacho..."
+system("gnuplot graficas_" + ARGV[0].to_s + ".gp")
