@@ -6,6 +6,7 @@
 #include <iostream>
 using namespace std;
 
+//Cuenta la afinidad que ya has perdido cogiendo la distribución por ahora hecha en rama
 int afinidadNoConseguida(list<int> rama, int* afinidades, int n){
 	int res = 0;
 	list<int>::iterator itnext ;
@@ -19,13 +20,13 @@ int afinidadNoConseguida(list<int> rama, int* afinidades, int n){
 }
 
 list<int> backtracking(list<int> rama, int* afinidades, list<int> sinusar, int &bestafinlost, int n){
-	if(afinidadNoConseguida(rama,afinidades,n) >= bestafinlost){
-		list<int> res;
-		res.clear();
+	if(afinidadNoConseguida(rama,afinidades,n) >= bestafinlost){     // Si la afinidad perdida es más grande que la afinidad
+		list<int> res;						 // perdida en la mejor distribucion hasta el momento, men,
+		res.clear();						 // desiste del tema.
 		return res;
 	}else{
 		int tam = sinusar.size();
-		if(tam <= 1){
+		if(tam <= 1){			// Si queda una persona por sentar, men, has llegado
 			rama.splice(rama.end(),sinusar);
 			bestafinlost = afinidadNoConseguida(rama,afinidades,n);
 			return rama;
@@ -34,7 +35,7 @@ list<int> backtracking(list<int> rama, int* afinidades, list<int> sinusar, int &
 			list<int> res;
 			list<int> aux2;
 			int i = 0;
-			for(it = sinusar.begin(); it != sinusar.end(); it++){
+			for(it = sinusar.begin(); it != sinusar.end(); it++){	// Crea una rama por cada persona que no este sentada
 				int aux = *it;
 				it = sinusar.erase(it);
 				rama.push_back(aux);
@@ -60,12 +61,12 @@ int main(int argc, char* argv[]){
 	int* afinidades = new int[n*n];
 	list<int> rama ; 
 	list<int> sinusar ;
-	for(int i = 0; i < n; i++){
+	for(int i = 0; i < n; i++){		// Rellena afinidades
 		sinusar.push_back(i);
 		for(int j = i; j < n; j++){
 			afinidades[i*n+j] = afinidades[j*n+i] = rand()%101;
 			if(i == j)
-				afinidades[i*n+i] = 0;
+				afinidades[i*n+i] = 0;  // La afinidad contigo mismo es 0, si.
 		}
 	}
 	rama.push_back(0);   // La mesa es redonda, el primer elemento da igual el que sea.
@@ -74,16 +75,16 @@ int main(int argc, char* argv[]){
 	int NoAfinidad = n*100;
 	rama = backtracking(rama, afinidades, sinusar, NoAfinidad, n);
 	
-	for(int i = 0; i < n; i++){
+	for(int i = 0; i < n; i++){		// IMPRIME MATRIZ DE AFINIDADES
 		for(int j = 0; j < n; j++){
 			cout << afinidades[i*n+j] << " ";
 		}
 		cout << endl ;
 	}
-	cout << endl << "La solucion es:" << endl;
+	cout << endl << "La solucion es:" << endl;   // IMPRIME LA MESA
 	for(list<int>::iterator it = rama.begin(); it != rama.end(); it++){
 		cout << *it << " - " ;
 	}
-	cout << endl << "La afinidad conseguida es " << 100*n - NoAfinidad << endl;
+	cout << endl << "La afinidad conseguida es " << 100*n - NoAfinidad << endl;   // IMPREME LA AFINIDAD CONSEGUIDA
 	
 }
