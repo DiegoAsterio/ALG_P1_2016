@@ -23,3 +23,14 @@ set term png
 set output "./grphx/Luis/cena_gala_backtracking_cuentaperdida.png"
 replot
 set term x11
+
+##### GRAFICA CENA_GALA_LUIS ######
+factorial(x) = a*x! + b
+
+fit factorial(x) "./data/Luis/cena_gala_luis.dat" via a, b
+plot factorial(x) title "factorial", "./data/Luis/cena_gala_luis.dat" lt rgb "gold" title "cena_gala_backtracking_cuentaperdida"
+
+set term png
+set output "./grphx/Luis/cena_gala_luis.png"
+replot
+set term x11
