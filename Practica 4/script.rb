@@ -14,7 +14,7 @@ end
 
 system( "g++ -std=c++11 ./src/cena_gala_backtracking_cuentaperdida.cpp -o ./bin/cena_gala_backtracking_cuentaperdida" )
 puts "Ejecutando cena_gala_backtracking_cuentaperdida..."
-(1..12).each do |x|
+(1..10).each do |x|
   puts "Iteracion: " + x.to_s
   system( "./bin/cena_gala_backtracking_cuentaperdida " + x.to_s + " >> ./data/" + ARGV[0].to_s + "/cena_gala_backtracking_cuentaperdida" + ".dat")
 end
@@ -24,6 +24,13 @@ puts "Ejecutando cena_gala_luis..."
 (1..10).each do |x|
   puts "Iteracion: " + x.to_s
   system("./bin/cena_gala_luis " + x.to_s + " >> ./data/" + ARGV[0].to_s + "/cena_gala_luis" + ".dat")
+end
+
+system("g++ -std=c++11 ./src/cena_gala_diego.cpp -o ./bin/cena_gala_diego")
+puts "Ejecutando cena_gala_diego..."
+(2..10).each do |x|
+  puts "Iteracion: " + x.to_s
+  system("./bin/cena_gala_diego " + x.to_s + " >> ./data/" + ARGV[0].to_s + "/cena_gala_diego" + ".dat")
 end
 
 puts "Generando gráficas..."
