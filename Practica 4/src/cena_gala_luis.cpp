@@ -13,7 +13,7 @@ int suma(list<int> rama, int* afinidades,int n){
 	int sum=0;
 	list<int>::iterator it;
 	list<int>::iterator next_it;
-	for(it=rama.begin(); it!=rama.end();++it){
+	for(it=rama.begin(); it!=prev(rama.end());++it){
 		next_it=it;
 		next_it++;
 		sum += afinidades[(*it)*n+(*(next_it))];
@@ -91,7 +91,7 @@ int main(int argc, char* argv[]){
 	rama = backtracking(rama, afinidades, sinusar, suma, n);
 	t_despues = high_resolution_clock::now();
 
-	//Imprime(afinidades, rama, n, NoAfinidad);
+	//Imprime(afinidades, rama, n, suma);
 
 	duration<double> transcurrido = duration_cast<duration<double> >(t_despues-t_antes);
   cout << n << " " << transcurrido.count() << "\n";
