@@ -14,7 +14,7 @@ replot
 set term x11
 
 ######## GRAFICA CENA_GALA_BACKTRACKING_CUENTAPERDIDA ###########
-factorial(x) = a*x! + b
+factorial(x) = a*int(x)! + b
 
 fit factorial(x) "./data/Luis/cena_gala_backtracking_cuentaperdida.dat" via a, b
 plot factorial(x) title "factorial", "./data/Luis/cena_gala_backtracking_cuentaperdida.dat" lt rgb "gold" title "cena_gala_backtracking_cuentaperdida"
@@ -25,9 +25,9 @@ replot
 set term x11
 
 ##### GRAFICA CENA_GALA_LUIS ######
-factorial(x) = a*x! + b
+factorial(x) = c*int(x)! + d
 
-fit factorial(x) "./data/Luis/cena_gala_luis.dat" via a, b
+fit factorial(x) "./data/Luis/cena_gala_luis.dat" via c, d
 plot factorial(x) title "factorial", "./data/Luis/cena_gala_luis.dat" lt rgb "gold" title "cena_gala_backtracking_cuentaperdida"
 
 set term png
