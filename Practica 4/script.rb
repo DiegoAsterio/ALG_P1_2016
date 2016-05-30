@@ -18,5 +18,13 @@ puts "Ejecutando cena_gala_backtracking_cuentaperdida..."
   puts "Iteracion: " + x.to_s
   system( "./bin/cena_gala_backtracking_cuentaperdida " + x.to_s + " >> ./data/" + ARGV[0].to_s + "/cena_gala_backtracking_cuentaperdida" + ".dat")
 end
+
+system("g++ -std=c++11 ./src/cena_gala_luis.cpp -o ./bin/cena_gala_luis")
+puts "Ejecutando cena_gala_luis..."
+(1..10).each do |x|
+  puts "Iteracion: " + x.to_s
+  system("./bin/cena_gala_luis " + x.to_s + " >> ./data/" + ARGV[0].to_s + "/cena_gala_luis" + ".dat")
+end
+
 puts "Generando gráficas..."
 system("gnuplot graficas_" + ARGV[0].to_s + ".gp")
