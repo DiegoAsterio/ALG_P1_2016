@@ -29,7 +29,7 @@ end
 
 system("g++ -std=c++11 ./src/cena_gala_diego.cpp -o ./bin/cena_gala_diego")
 puts "Ejecutando cena_gala_diego..."
-(1..10).each do |x|
+(2..20).each do |x|
   puts "Iteracion: " + x.to_s
   system("./bin/cena_gala_diego " + x.to_s + " >> ./data/" + ARGV[0].to_s + "/cena_gala_diego" + ".dat")
 end
