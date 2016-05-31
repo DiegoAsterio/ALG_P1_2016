@@ -14,12 +14,37 @@ replot
 set term x11
 
 ######## GRAFICA CENA_GALA_BACKTRACKING_CUENTAPERDIDA ###########
-factorial(x) = a*x! + b
+fac(x) = (int(x)==0) ? 1.0 : int(x) * fac(int(x)-1.0)
+factorial(x) = a*fac(x) + b
 
 fit factorial(x) "./data/Miguel/cena_gala_backtracking_cuentaperdida.dat" via a, b
-plot factorial(x) title "factorial", "./data/Miguel/cena_gala_backtracking_cuentaperdida.dat" lt rgb "gold" title "cena_gala_backtracking_cuentaperdida"
+plot factorial(x) title "factorial", "./data/Miguel/cena_gala_backtracking_cuentaperdida.dat" with lines lt rgb "gold" title "cena_gala_backtracking_cuentaperdida"
 
 set term png
 set output "./grphx/Miguel/cena_gala_backtracking_cuentaperdida.png"
+replot
+set term x11
+
+######## GRAFICA CENA_GALA_LUIS ###########
+fac(x) = (int(x)==0) ? 1.0 : int(x) * fac(int(x)-1.0)
+factorial(x) = a*fac(x) + b
+
+fit factorial(x) "./data/Miguel/cena_gala_luis.dat" via a, b
+plot factorial(x) title "factorial", "./data/Miguel/cena_gala_luis.dat" with lines lt rgb "gold" title "cena_gala_luis"
+
+set term png
+set output "./grphx/Miguel/cena_gala_luis.png"
+replot
+set term x11
+
+######## GRAFICA CENA_GALA_DIEGO ###########
+fac(x) = (int(x)==0) ? 1.0 : int(x) * fac(int(x)-1.0)
+factorial(x) = a*fac(x) + b
+
+fit factorial(x) "./data/Miguel/cena_gala_diego.dat" via a, b
+plot factorial(x) title "factorial", "./data/Miguel/cena_gala_diego.dat" with lines lt rgb "gold" title "cena_gala_diego"
+
+set term png
+set output "./grphx/Miguel/cena_gala_diego.png"
 replot
 set term x11
