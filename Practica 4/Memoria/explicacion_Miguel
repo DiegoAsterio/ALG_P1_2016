@@ -1,3 +1,9 @@
 Men, mola mucho
 El algoritmo es un backtracking generado, en lugar de con un árbol, con llamdas recursivas y haciendo uso de la pila. La llamada 
-guarda el mejor tiempo hasta el momento (continuara...)
+guarda el mejor tiempo hasta el momento como parámetro por referencia. De este modo, cada vez que encontremos una rama mejor que 
+la mejor que teníamos hasta el momento, solo será necesario cambiar el valor del máximo en una "hoja del arbol". Se ha implementado
+la poda de nodos para hacer un poco más eficiente el algoritmo. Para ello se tiene en cuenta la eficiencia no se ha podido conseguir 
+en los nodos anteriores y la diferencia entre la mejor rama hasta el momento y la rama actual.
+
+Para evaluar la calidad de una rama se ha usado la función afinidadNoConseguida, que mide la suma de las afinidades que no se han podido
+conseguir con las personas sentadas hasta el momento.
