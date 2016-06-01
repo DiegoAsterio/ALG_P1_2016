@@ -1,0 +1,15 @@
+El algoritmo cena de gala hecho con branch and bound va incluyendo posibles mesa
+s en una cola con prioridad de mesas. Las mesas se ordenarán de acuerdo a la afi
+nidad que tengan las personas sentadas en ellas mas la mesa de la prioridad medi
+a de manera que también se tenga en cuenta las asociaciones que aun no se han he
+cho. Además la función afinidad esta normalizada de manera que una mesa con más
+elementos no tiene porque tener mayor afinidad (Una media aritmética basta).
+
+
+La forma de trabajar sería la siguiente :
+  1. Se genera una cola con prioridad que contenga todas las parejas posibles.
+    1.1 Si se tiene que la mesa de mayor prioridad tiene el tamaño adecuado se d
+    evuelve.
+
+    1.2 Se toma la mesa con mayor prioridad y se añaden a la cola todas las mesa
+    s que se pueden formar añadiendo un elemento a la de mayor prioridad.
