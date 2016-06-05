@@ -14,7 +14,8 @@ using namespace std::chrono;
 
 struct Ciudad
 {
-  double coord_x, coord_y, ciudad;
+  float coord_x, coord_y;
+  short int ciudad;
 
   Ciudad()
   {
@@ -104,7 +105,7 @@ double Distancia(int x0, int x1, int y0, int y1)
     return n;
 }
 
-void RellenaMap(map<double, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ciudad>& rec, double distancia=0, int nhijo=0)
+void RellenaMap(map<float, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ciudad>& rec, float distancia=0, int nhijo=0)
 {
   Nodo* actual = arbol;
   rec.push_back(actual->actual);
@@ -128,17 +129,19 @@ void RellenaMap(map<double, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ci
   }
 }
 
-int BacktrackingTSP(vector<Ciudad> mapa, vector<Ciudad>& sol)
+double BacktrackingTSP(vector<Ciudad> mapa, vector<Ciudad>& sol)
 {
   vector<Ciudad> copia_mapa(mapa);
   Nodo* arbol = new Nodo(mapa[0],0,0);
   mapa.erase(mapa.begin());
   CreaArbol(mapa,arbol);
 
-  map<double, vector<Ciudad> > recorridos;
+  map<float, vector<Ciudad> > recorridos;
   vector<Ciudad> aux;
   RellenaMap(recorridos, arbol, aux);
-  sol=recorridos.begin()->second;
+  for(int i=0; i < (int)(recorridos.begin())->second.size();++i)
+    cout << (recorridos.begin())->second[i].ciudad << " " << (recorridos.begin())->second[i].coord_x << " " << (recorridos.begin())->second[i].coord_y << endl;
+  sol=(recorridos.begin())->second;
   return recorridos.begin()->first;
 }
 
