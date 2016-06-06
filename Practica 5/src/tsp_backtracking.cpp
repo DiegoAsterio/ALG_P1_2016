@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdio>
 #include <cmath>
+#include <climits>
 #include <time.h>
 #include <map>
 #include <list>
@@ -22,6 +23,19 @@ struct Ciudad
     ciudad = 0;
     coord_x = 0;
     coord_y = 0;
+  }
+  Ciudad(short int c, float c_x, float c_y)
+  {
+    ciudad = c;
+    coord_x = c_x;
+    coord_y = c_y;
+  }
+  Ciudad& operator=(Ciudad& c)
+  {
+    ciudad=c.ciudad;
+    coord_y = c.coord_y;
+    coord_x = c.coord_x;
+    return *this;
   }
 };
 
@@ -75,7 +89,7 @@ void LeeFichero(char* nombre, vector<Ciudad>& mapa)
   archivo.close();
 }
 
-void CreaArbol(vector<Ciudad> mapa, Nodo* arbol)
+/*void CreaArbol(vector<Ciudad> mapa, Nodo* arbol)
 {
   //Crea el arbol con todas las posibilidades.
   Nodo* actual=arbol;
@@ -97,7 +111,7 @@ void CreaArbol(vector<Ciudad> mapa, Nodo* arbol)
       CreaArbol(param, actual);
     }
   }
-}
+}*/
 
 double Distancia(int x0, int x1, int y0, int y1)
 {
@@ -105,7 +119,7 @@ double Distancia(int x0, int x1, int y0, int y1)
     return n;
 }
 
-void RellenaMap(map<float, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ciudad>& rec, float distancia=0, int nhijo=0)
+/*void RellenaMap(map<float, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ciudad>& rec, float distancia=0, int nhijo=0)
 {
   Nodo* actual = arbol;
   rec.push_back(actual->actual);
@@ -119,7 +133,13 @@ void RellenaMap(map<float, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ciu
     if(sig->hijo_izq==0)
     {
       recorridos.insert(recorridos.begin(), pair<double,vector<Ciudad> >(distancia, rec));
-      ++nhijo;
+      if(sig->hermano_der!=0)
+      {
+        ++nhijo;
+        actual = sig->hermano_der;
+        RellenaMap(recorridos, actual, rec, distancia, nhijo);
+      }
+      else nhijo=0;
     }
     else
     {
@@ -127,22 +147,59 @@ void RellenaMap(map<float, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ciu
       RellenaMap(recorridos, actual, rec, distancia, nhijo);
     }
   }
+}*/
+
+double suma(list<int> rama, double* afinidades,int n){
+	int sum=0;
+	list<int>::iterator it;
+	list<int>::iterator next_it;
+	for(it=rama.begin(); it!=prev(rama.end());++it){
+		next_it=it;
+		++next_it;
+		sum += afinidades[(*it)*n+(*(next_it))];
+	}
+	sum+= afinidades[(*(rama.begin()))*n+(*(prev(rama.end())))];
+	return sum;
 }
 
-double BacktrackingTSP(vector<Ciudad> mapa, vector<Ciudad>& sol)
+list<int> BacktrackingTSP(list<int> rama, double* afinidades, list<int> sinusar,double& minima_suma, int n, long long int& cont, double& total)
 {
-  vector<Ciudad> copia_mapa(mapa);
-  Nodo* arbol = new Nodo(mapa[0],0,0);
-  mapa.erase(mapa.begin());
-  CreaArbol(mapa,arbol);
+  if(cont%1000000==0) cout << cont << " --- " << total << endl;
+  ++cont;
+  int tam = sinusar.size();
+  if(tam <= 1){
+    rama.splice(rama.end(),sinusar);
+    double sum=suma(rama,afinidades,n);
+    if(minima_suma>sum && sum>0)
+      minima_suma=sum;
+    return rama;
+  }else{
+    list<int>::iterator it;
+    list<int> res;
+    list<int> aux2;
+    for(it = sinusar.begin(); it != sinusar.end(); ++it){
+      int aux = *it;
+      it = sinusar.erase(it);
+      rama.push_back(aux);
+      aux2 = BacktrackingTSP(rama, afinidades, sinusar,minima_suma, n, cont, total);
+      if(aux2.size() != 0){
+        res = aux2;
+      }
+      it = sinusar.emplace(it,aux);
+      rama.remove(aux);
+    }
+    return res;
+  }
 
-  map<float, vector<Ciudad> > recorridos;
-  vector<Ciudad> aux;
-  RellenaMap(recorridos, arbol, aux);
-  for(int i=0; i < (int)(recorridos.begin())->second.size();++i)
-    cout << (recorridos.begin())->second[i].ciudad << " " << (recorridos.begin())->second[i].coord_x << " " << (recorridos.begin())->second[i].coord_y << endl;
-  sol=(recorridos.begin())->second;
-  return recorridos.begin()->first;
+}
+
+void WriteBack(ofstream& os, vector<Ciudad> sol)
+{
+  os << "DIMENSION: " << sol.size() << endl;
+  for(int i = 1;i<=(int)sol.size();++i)
+  {
+    os << sol[i-1].ciudad << " " << sol[i-1].coord_x << " " << sol[i-1].coord_y << endl;
+  }
 }
 
 int main(int argc, char* argv[])
@@ -154,8 +211,38 @@ int main(int argc, char* argv[])
     exit(1);
   }
 
-  vector<Ciudad> mapa, sol;
+  vector<Ciudad> mapa;
+  list<int> sol;
   LeeFichero(argv[1], mapa);
-  int tam_recorrido = BacktrackingTSP(mapa, sol);
-  cout << "El tamaño del recorrido es: " << tam_recorrido << endl;
+  int n=(int)mapa.size();
+  double distancia_recorrido=INT_MAX;
+	double* afinidades = new double[n*n];
+	list<int> rama ;
+	list<int> sinusar ;
+	for(int i = 0; i < n; i++){		// Rellena afinidades
+		sinusar.push_back(i);
+		for(int j = i; j < n; j++){
+			afinidades[i*n+j] = afinidades[j*n+i] = Distancia(mapa[i].coord_x,mapa[j].coord_x,mapa[i].coord_y, mapa[j].coord_y);
+			if(i == j)
+				afinidades[i*n+i] = 0;  // La afinidad contigo mismo es 0, si.
+		}
+	}
+  rama.push_back(0);
+	sinusar.pop_front();
+
+
+  long long int cont=0;
+  double total=1;
+  for(int i = 0; i < n;++i)
+    total*=n;
+
+  sol = BacktrackingTSP(rama, afinidades, sinusar, distancia_recorrido, n, cont, total);
+  cout << "El tamaño del recorrido es: " << distancia_recorrido << endl;
+  ofstream f(argv[2]);
+  vector<Ciudad> recorrido;
+  for(list<int>::iterator it=sol.begin();it!=sol.end();++it)
+  {
+    recorrido.push_back(Ciudad(mapa[*it].ciudad, mapa[*it].coord_x, mapa[*it].coord_y));
+  }
+  WriteBack(f,recorrido);
 }
