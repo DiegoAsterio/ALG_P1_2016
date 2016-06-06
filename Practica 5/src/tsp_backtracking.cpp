@@ -150,7 +150,7 @@ double Distancia(int x0, int x1, int y0, int y1)
 }*/
 
 double suma(list<int> rama, double* afinidades,int n){
-	int sum=0;
+	double sum=0;
 	list<int>::iterator it;
 	list<int>::iterator next_it;
 	for(it=rama.begin(); it!=prev(rama.end());++it){
@@ -162,16 +162,15 @@ double suma(list<int> rama, double* afinidades,int n){
 	return sum;
 }
 
-list<int> BacktrackingTSP(list<int> rama, double* afinidades, list<int> sinusar,double& minima_suma, int n, long long int& cont, double& total)
+list<int> BacktrackingTSP(list<int> rama, double* afinidades, list<int> sinusar,double& minima_suma, int n, double& cont, double& total)
 {
-  if(cont%1000000==0) cout << cont << " --- " << total << endl;
-  ++cont;
+  //if((int)cont%1000000==0) cout << cont << " --- " << total << endl;
+  //++cont;
   int tam = sinusar.size();
-  if(tam <= 1){
+  double sum=suma(rama,afinidades,n);
+  if(tam <= 1 && minima_suma>sum && sum>0){
     rama.splice(rama.end(),sinusar);
-    double sum=suma(rama,afinidades,n);
-    if(minima_suma>sum && sum>0)
-      minima_suma=sum;
+    minima_suma=sum;
     return rama;
   }else{
     list<int>::iterator it;
@@ -231,7 +230,7 @@ int main(int argc, char* argv[])
 	sinusar.pop_front();
 
 
-  long long int cont=0;
+  double cont=0;
   double total=1;
   for(int i = 0; i < n;++i)
     total*=n;
@@ -242,7 +241,7 @@ int main(int argc, char* argv[])
   vector<Ciudad> recorrido;
   for(list<int>::iterator it=sol.begin();it!=sol.end();++it)
   {
-    recorrido.push_back(Ciudad(mapa[*it].ciudad, mapa[*it].coord_x, mapa[*it].coord_y));
+    recorrido.push_back(Ciudad(mapa[*it].ciudad, mapa[mapa[*it].ciudad-1].coord_x, mapa[mapa[*it].ciudad-1].coord_y));
   }
   WriteBack(f,recorrido);
 }
