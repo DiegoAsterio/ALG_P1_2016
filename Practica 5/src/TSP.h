@@ -19,7 +19,7 @@ struct City{
 using namespace std;
 
 class TSP {
-    typedef std::priority_queue<std::vector<City> ,std::vector<std::vector<City> >, std::function<bool(std::vector<City>&, std::vector<City>&)> > mypq_type;
+    typedef priority_queue<vector<City> ,vector<std::vector<City> >, function<bool(vector<City>&, vector<City>& )> > mypq_type;
 
     private:
         int nCiudades;
