@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <utility>
+#include <functional>
 #include <queue>
 #include <vector>
 

@@ -1,10 +1,12 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <chrono>
 #include <cmath>
 #include "TSP.h"
 
 using namespace std;
+using namespace std::chrono;
 
 
 double distancia2(int x0, int x1, int y0, int y1)
@@ -15,7 +17,7 @@ double distancia2(int x0, int x1, int y0, int y1)
 
 int main(int argc, char* argv[])
 {
-  chrono::high_resolution_clock::time_point t_antes, t_despues;
+  high_resolution_clock::time_point t_antes, t_despues;
 
   if (argc<2)
   {
@@ -27,9 +29,9 @@ int main(int argc, char* argv[])
 
   vector<City> v_branch_nd_bound;
 
-    t_antes = chrono::high_resolution_clock::now();
+    t_antes = high_resolution_clock::now();
     t_branch_and_bound.TSP_branch_and_bound(v_branch_nd_bound);
-    t_despues = chrono::high_resolution_clock::now();
+    t_despues = high_resolution_clock::now();
 
     ofstream f_branch_nd_bound("sol_branch_nd_bound.tsp");
 
