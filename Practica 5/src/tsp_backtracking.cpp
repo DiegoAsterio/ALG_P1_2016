@@ -90,7 +90,7 @@ double suma(list<int> rama, double* afinidades,int n){
 	return sum;
 }
 
-list<int> BacktrackingTSP(list<int> rama, double* afinidades, list<int> sinusar,double& minima_suma, int n, double& cont, double& total)
+list<int> BacktrackingTSP(list<int> rama, double* afinidades, list<int> sinusar,double& minima_suma, int n)
 {
   int tam = sinusar.size();
   double sum=suma(rama,afinidades,n);
@@ -106,7 +106,7 @@ list<int> BacktrackingTSP(list<int> rama, double* afinidades, list<int> sinusar,
       int aux = *it;
       it = sinusar.erase(it);
       rama.push_back(aux);
-      aux2 = BacktrackingTSP(rama, afinidades, sinusar,minima_suma, n, cont, total);
+      aux2 = BacktrackingTSP(rama, afinidades, sinusar,minima_suma, n);
       if(aux2.size() != 0){
         res = aux2;
       }
@@ -155,14 +155,13 @@ int main(int argc, char* argv[])
   rama.push_back(0);
 	sinusar.pop_front();
 
-
-  double cont=0;
-  double total=1;
-  for(int i = 0; i < n;++i)
-    total*=n;
-
-  sol = BacktrackingTSP(rama, afinidades, sinusar, distancia_recorrido, n, cont, total);
+  high_resolution_clock::time_point t_antes, t_despues;
+  t_antes = high_resolution_clock::now();
+  sol = BacktrackingTSP(rama, afinidades, sinusar, distancia_recorrido, n);
+  t_despues = high_resolution_clock::now();
   cout << "El tamaño del recorrido es: " << distancia_recorrido << endl;
+  duration<double> transcurrido = duration_cast<duration<double> >(t_despues-t_antes);
+  cout << n << " " << transcurrido.count() << "\n";
   ofstream f(argv[2]);
   vector<Ciudad> recorrido;
   for(list<int>::iterator it=sol.begin();it!=sol.end();++it)
