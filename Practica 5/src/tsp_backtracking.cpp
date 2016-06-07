@@ -39,24 +39,6 @@ struct Ciudad
   }
 };
 
-struct Nodo
-{
-  Ciudad actual;
-  Nodo* hijo_izq;
-  Nodo* hermano_der;
-
-  Nodo()
-  {
-    hijo_izq=hermano_der=0;
-  }
-  Nodo(Ciudad c, Nodo* hijo, Nodo* hermano)
-  {
-    actual = c;
-    hijo_izq = hijo;
-    hermano_der = hermano;
-  }
-};
-
 void LeeFichero(char* nombre, vector<Ciudad>& mapa)
 {
   bool first=true;
@@ -89,65 +71,11 @@ void LeeFichero(char* nombre, vector<Ciudad>& mapa)
   archivo.close();
 }
 
-/*void CreaArbol(vector<Ciudad> mapa, Nodo* arbol)
-{
-  //Crea el arbol con todas las posibilidades.
-  Nodo* actual=arbol;
-  for(int i = 0; i < (int)mapa.size()-1; ++i)
-  {
-    vector<Ciudad> param(mapa);
-    if(i==0)
-    {
-      actual->hijo_izq = new Nodo(mapa[i],0,0);
-      actual = actual->hijo_izq;
-      param.erase(param.begin());
-      CreaArbol(param, actual);
-    }
-    else
-    {
-      actual->hermano_der = new Nodo(mapa[i],0,0);
-      actual = actual->hermano_der;
-      param.erase(param.begin()+i);
-      CreaArbol(param, actual);
-    }
-  }
-}*/
-
 double Distancia(int x0, int x1, int y0, int y1)
 {
     double n = sqrt(pow(x1-x0,2) + pow(y1-y0,2));
     return n;
 }
-
-/*void RellenaMap(map<float, vector<Ciudad> >& recorridos, Nodo* arbol, vector<Ciudad>& rec, float distancia=0, int nhijo=0)
-{
-  Nodo* actual = arbol;
-  rec.push_back(actual->actual);
-  while(actual->hijo_izq !=0 && actual->hermano_der !=0)
-  {
-    Nodo* sig=actual->hijo_izq;
-    for(int i = 0; i < nhijo;++i)
-      sig=sig->hermano_der;
-    distancia+=Distancia(actual->actual.coord_x, sig->actual.coord_x, actual->actual.coord_y, sig->actual.coord_y);
-
-    if(sig->hijo_izq==0)
-    {
-      recorridos.insert(recorridos.begin(), pair<double,vector<Ciudad> >(distancia, rec));
-      if(sig->hermano_der!=0)
-      {
-        ++nhijo;
-        actual = sig->hermano_der;
-        RellenaMap(recorridos, actual, rec, distancia, nhijo);
-      }
-      else nhijo=0;
-    }
-    else
-    {
-      actual=sig;
-      RellenaMap(recorridos, actual, rec, distancia, nhijo);
-    }
-  }
-}*/
 
 double suma(list<int> rama, double* afinidades,int n){
 	double sum=0;
@@ -164,8 +92,6 @@ double suma(list<int> rama, double* afinidades,int n){
 
 list<int> BacktrackingTSP(list<int> rama, double* afinidades, list<int> sinusar,double& minima_suma, int n, double& cont, double& total)
 {
-  //if((int)cont%1000000==0) cout << cont << " --- " << total << endl;
-  //++cont;
   int tam = sinusar.size();
   double sum=suma(rama,afinidades,n);
   if(tam <= 1 && minima_suma>sum && sum>0){
@@ -218,12 +144,12 @@ int main(int argc, char* argv[])
 	double* afinidades = new double[n*n];
 	list<int> rama ;
 	list<int> sinusar ;
-	for(int i = 0; i < n; i++){		// Rellena afinidades
+	for(int i = 0; i < n; i++){
 		sinusar.push_back(i);
 		for(int j = i; j < n; j++){
 			afinidades[i*n+j] = afinidades[j*n+i] = Distancia(mapa[i].coord_x,mapa[j].coord_x,mapa[i].coord_y, mapa[j].coord_y);
 			if(i == j)
-				afinidades[i*n+i] = 0;  // La afinidad contigo mismo es 0, si.
+				afinidades[i*n+i] = 0;
 		}
 	}
   rama.push_back(0);
