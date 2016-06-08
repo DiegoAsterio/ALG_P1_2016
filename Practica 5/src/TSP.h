@@ -35,7 +35,7 @@ class TSP {
         double peso(vector<City>);
         vector<City> noEstan(vector<City>);
         vector<City> bestChoice(mypq_type);
-        vector<City> branch_with_greedy(vector<City>,double);
+        vector<City> branch_with_greedy(mypq_type,double);
 
 
     public:

@@ -44,7 +44,6 @@ int main(int argc, char* argv[])
   t_vecino_mas_cercano.TSP_vecino_mas_cercano(v_vecinos_mas_cercanos);
   double dist_total=DistanciaRecorrido(v_vecinos_mas_cercanos);
 
-
     t_antes = high_resolution_clock::now();
     t_branch_and_bound.TSP_branch_and_bound_II(v_branch_nd_bound, dist_total);
     t_despues = high_resolution_clock::now();

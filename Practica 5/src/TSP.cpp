@@ -3,6 +3,7 @@
 #include <vector>
 #include <utility>
 #include <climits>
+#include <cassert>
 #include <iostream>
 #include <cmath>
 #include "TSP.h"
@@ -115,7 +116,7 @@ void TSP::find_max(){
 }
 
 double TSP::afinidad(std::vector<City> v){
-  int ret = 0;
+  double ret = 0;
 
   for (size_t i = 0; i < v.size() - 1; i++)
     ret += distancia(v[i].coord_x,v[i].coord_y,v[i+1].coord_x,v[i+i].coord_y);
@@ -208,6 +209,7 @@ vector<City> TSP::branch_with_greedy(mypq_type prior,double media){
       if (afinidad(aux)/aux.size() <= media)
         prior.push(aux);
 		}
+    assert(!prior.empty());
 		return bestChoice(prior);
   }
 }
@@ -216,7 +218,7 @@ void TSP::TSP_branch_and_bound_II(vector<City>& solucion, double dist_total){
 
   double media = dist_total/solucion.size();
 
-  std::function<bool(std::vector<City>&, std::vector<City>&)> comp = [this](std::vector<City>& a, std::vector<City>& b) -> bool {return this->afinidad(a)/b.size()  > this->afinidad(b)/b.size() ;};
+  std::function<bool(std::vector<City>&, std::vector<City>&)> comp = [this](std::vector<City>& a, std::vector<City>& b) -> bool {return this->afinidad(a)/a.size()  > this->afinidad(b)/b.size() ;};
 	mypq_type prior(comp);
 
   std::vector<City> aux(2);
@@ -227,7 +229,7 @@ void TSP::TSP_branch_and_bound_II(vector<City>& solucion, double dist_total){
 	   prior.push(aux);
 	}
 
-  solucion = branch_with_greedy(solucion,media);
+  solucion = branch_with_greedy(prior,media);
 }
 
 
