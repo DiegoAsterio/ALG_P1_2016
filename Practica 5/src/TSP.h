@@ -35,6 +35,7 @@ class TSP {
         double peso(vector<City>);
         vector<City> noEstan(vector<City>);
         vector<City> bestChoice(mypq_type);
+        vector<City> branch_with_greedy(vector<City>,double);
 
 
     public:
@@ -49,6 +50,8 @@ class TSP {
         void TSP_RandomSwap(int n, vector<City>& solucion);
         void TSP_WriteBack(ofstream& os, vector<City> sol);
         void TSP_branch_and_bound(vector<City>& solucion);
+
+        void TSP_branch_and_bound_II(vector<City>&, double dist_total); //OK??
 
 };
 #endif // TSP_H_INCLUDED

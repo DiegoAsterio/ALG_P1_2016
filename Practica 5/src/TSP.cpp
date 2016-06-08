@@ -193,6 +193,44 @@ void TSP::TSP_branch_and_bound(vector<City>& solucion){
   branch_engine_start(solucion);
 }
 
+vector<City> TSP::branch_with_greedy(mypq_type prior,double media){
+  if (prior.top().size() == ciudades.size()) {
+    return prior.top();
+  }
+  else{
+    vector<City> mejores = prior.top();
+		prior.pop();
+		std::vector<City> nuevosElementos = noEstan(mejores); //ES LA QUE DA POR CULO N^2
+
+		for (auto i : nuevosElementos) {
+		  std::vector<City> aux (mejores);
+		  aux.push_back(i);
+      if (afinidad(aux)/aux.size() <= media)
+        prior.push(aux);
+		}
+		return bestChoice(prior);
+  }
+}
+
+void TSP::TSP_branch_and_bound_II(vector<City>& solucion, double dist_total){
+
+  double media = dist_total/solucion.size();
+
+  std::function<bool(std::vector<City>&, std::vector<City>&)> comp = [this](std::vector<City>& a, std::vector<City>& b) -> bool {return this->afinidad(a)/b.size()  > this->afinidad(b)/b.size() ;};
+	mypq_type prior(comp);
+
+  std::vector<City> aux(2);
+	aux[0] = ciudades[0];
+	for (int i = 1 ; i<ciudades.size() ; ++i){
+	  aux[1] = ciudades[i];
+    if (afinidad(aux)/2 <= media)
+	   prior.push(aux);
+	}
+
+  solucion = branch_with_greedy(solucion,media);
+}
+
+
 void TSP::TSP_triangles(vector<City>& solucion){
 
   vector<City> candidatos(ciudades);
