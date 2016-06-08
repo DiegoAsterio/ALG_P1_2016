@@ -123,7 +123,7 @@ double TSP::afinidad(std::vector<City> v){
 
   return ret;
 }
-
+/*
 double TSP::peso(std::vector<City> cit){
   double ret = 0;
   vector<City> v = noEstan(cit);
@@ -137,7 +137,7 @@ double TSP::peso(std::vector<City> cit){
   }
   return ret;
 }
-
+*/
 std::vector<City> TSP::noEstan(std::vector<City> v){
   vector<City> ret ;
   bool noencontrado;
@@ -153,7 +153,7 @@ std::vector<City> TSP::noEstan(std::vector<City> v){
   }
   return ret;
 }
-
+/*
 vector<City> TSP::bestChoice(mypq_type prior){
   if (prior.top().size() == ciudades.size()) {
     return prior.top();
@@ -193,43 +193,74 @@ void TSP::TSP_branch_and_bound(vector<City>& solucion){
 
   branch_engine_start(solucion);
 }
+*/
 
-vector<City> TSP::branch_with_greedy(mypq_type prior,double media){
-  if (prior.top().size() == ciudades.size()) {
-    return prior.top();
+double TSP::lower_bound(Constrains my_constrains){
+  vector <pair<Edge,Edge> > v (ciudades.size());
+  City minimo1, minimo2;
+  for (size_t i = 0; i < ciudades.size(); i++) {
+    v[i].first.city1 = v[i].second.city2 = ciudades[i];
+    i==0 || i==1 ? minimo1 = v[2] : minimo1 = v[0];
+    i==0 || i==1 ? minimo2 = v[3] : minimo2 = v[1];
+    if (distancia(ciudades[i].coord_x,minimo1.coord_x,ciudades[i].coord_y,minimo1.coord_y) > distancia(ciudades[i].coord_x,minimo2.coord_x,ciudades[i].coord_y,minimo2.coord_y)){
+      City aux = minimo1;
+      minimo1 = minimo2;
+      minimo2 = aux;
+    }
+    for (size_t j = 0; j < ciudades.size(); j++) {
+      if (i!=j && v){
+        if (distancia(ciudades[i].coord_x,minimo1.coord_x,ciudades[i].coord_y,minimo1.coord_y) > distancia(ciudades[i].coord_x,ciudades[j].coord_x,ciudades[i].coord_y,ciudades[j].coord_y)){
+          minimo2 = minimo1;
+          minimo1 = v[j];
+        }else if (distancia(ciudades[i].coord_x,minimo2.coord_x,ciudades[i].coord_y,minimo2.coord_y) > distancia(ciudades[i].coord_x,ciudades[j].coord_x,ciudades[i].coord_y,ciudades[j].coord_y)){
+          minimo2 = v[j];
+        }
+      }
+    }
+    v[i].first.city2 = minimo1;
+    v[i].second.city2 = minimo2;
+    v[i].first.setDistancias();
+    v[i].second.setDistancias();
+  }
+
+  double ret;
+}
+
+vector<City> TSP::branch_with_greedy(multimap<double, vector<City> >& prior,double dist){
+  if (prior.begin()->second.size() == ciudades.size()) {
+    return prior.begin()->second;
   }
   else{
-    vector<City> mejores = prior.top();
-		prior.pop();
+    vector<City> mejores (prior.begin()->second);
+		prior.erase(prior.begin());
 		std::vector<City> nuevosElementos = noEstan(mejores); //ES LA QUE DA POR CULO N^2
 
 		for (auto i : nuevosElementos) {
 		  std::vector<City> aux (mejores);
 		  aux.push_back(i);
-      if (afinidad(aux)/aux.size() <= media)
-        prior.push(aux);
+      double afin = afinidad(aux);
+      if (afin <= dist)
+        prior.insert(std::pair<int, vector<City> >(afin,aux));
 		}
-    assert(!prior.empty());
-		return branch_with_greedy(prior,media);
+		return branch_with_greedy(prior,dist);
   }
 }
 
 void TSP::TSP_branch_and_bound_II(vector<City>& solucion, double dist_total){
 
-  double media = dist_total/solucion.size();
+  //std::function<bool(std::vector<City>&, std::vector<City>&)> comp = [this](std::vector<City>& a, std::vector<City>& b) -> bool {return this->afinidad(a)  > this->afinidad(b) ;};
+	//mypq_type prior(comp);
 
-  std::function<bool(std::vector<City>&, std::vector<City>&)> comp = [this](std::vector<City>& a, std::vector<City>& b) -> bool {return this->afinidad(a)/a.size()  > this->afinidad(b)/b.size() ;};
-	mypq_type prior(comp);
+  multimap<double, vector<City> > prior;
 
   std::vector<City> aux(2);
 	aux[0] = ciudades[0];
 	for (int i = 1 ; i<ciudades.size() ; ++i){
 	  aux[1] = ciudades[i];
-    if (afinidad(aux)/2 <= media)
-	   prior.push(aux);
+	  prior.insert(std::pair<int, vector<City> >(afinidad(aux),aux));
 	}
 
-  solucion = branch_with_greedy(prior,media);
+  solucion = branch_with_greedy(prior,dist_total);
 }
 
 
