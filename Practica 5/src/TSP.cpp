@@ -195,7 +195,7 @@ void TSP::TSP_branch_and_bound(vector<City>& solucion){
 }
 */
 
-double TSP::lower_bound(Constrains my_constrains){
+/*double TSP::lower_bound(Constrains my_constrains){
   vector <pair<Edge,Edge> > v (ciudades.size());
   City minimo1, minimo2;
   for (size_t i = 0; i < ciudades.size(); i++) {
@@ -224,9 +224,9 @@ double TSP::lower_bound(Constrains my_constrains){
   }
 
   double ret;
-}
+}*/
 
-vector<City> TSP::branch_with_greedy(multimap<double, vector<City> >& prior,double dist){
+vector<City> TSP::branch_with_greedy(multimap<double, vector<City> >& prior,double& dist){
   if (prior.begin()->second.size() == ciudades.size()) {
     return prior.begin()->second;
   }
@@ -255,7 +255,7 @@ void TSP::TSP_branch_and_bound_II(vector<City>& solucion, double dist_total){
 
   std::vector<City> aux(2);
 	aux[0] = ciudades[0];
-	for (int i = 1 ; i<ciudades.size() ; ++i){
+	for (int i = 1 ; i<(int)ciudades.size() ; ++i){
 	  aux[1] = ciudades[i];
 	  prior.insert(std::pair<int, vector<City> >(afinidad(aux),aux));
 	}

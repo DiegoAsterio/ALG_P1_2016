@@ -8,6 +8,7 @@
 #include <functional>
 #include <queue>
 #include <vector>
+#include <map>
 
 struct City{
     int ciudad;
@@ -20,7 +21,7 @@ struct City{
 using namespace std;
 
 class TSP {
-    typedef priority_queue<vector<City> ,vector<std::vector<City> >, function<bool(vector<City>&, vector<City>& )> > mypq_type;
+    //typedef priority_queue<vector<City> ,vector<std::vector<City> >, function<bool(vector<City>&, vector<City>& )> > mypq_type;
 
     private:
         int nCiudades;
@@ -34,8 +35,8 @@ class TSP {
         double afinidad(vector<City>);
         double peso(vector<City>);
         vector<City> noEstan(vector<City>);
-        vector<City> bestChoice(mypq_type);
-        vector<City> branch_with_greedy(mypq_type,double);
+        //vector<City> bestChoice(mypq_type);
+        vector<City> branch_with_greedy(multimap<double, vector<City> >&,double&);
 
 
     public:
