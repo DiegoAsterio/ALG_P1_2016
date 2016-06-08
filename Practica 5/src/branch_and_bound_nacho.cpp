@@ -182,18 +182,22 @@ double DistanciaRecorrido(vector<Ciudad>& vec)
   return dist;
 }
 
-list<Ciudad> BranchGredy(list<Ciudad> rama, list<Ciudad> sinusar, double &cota)
+list<Ciudad> BranchGredy(list<Ciudad> rama, list<Ciudad> sinusar, double &cota, list<Ciudad>& mejor_sol)
 {
-  if(DistanciaRecorrido(rama) >= cota){     // Si la afinidad perdida es más grande que la afinidad
+  if(DistanciaRecorrido(rama) >= cota)
+  {                             // Si la afinidad perdida es más grande que la afinidad
   	list<Ciudad> res;						 // perdida en la mejor distribucion hasta el momento, men,
   	res.clear();						 // desiste del tema.
   	return res;
-  }else{
+  }
+  else
+  {
   	int tam = sinusar.size();
     double dis_rama = DistanciaRecorrido(rama);
-  	if(tam <= 1 && dis_rama>0){			// Si queda una persona por sentar, men, has llegado
+  	if(tam <= 1){			// Si queda una persona por sentar, men, has llegado
   		rama.splice(rama.end(),sinusar);
-  		cota = dis_rama;
+      mejor_sol=rama;
+      cota = dis_rama;
   		return rama;
   	}else{
   		list<Ciudad>::iterator it;
@@ -203,8 +207,8 @@ list<Ciudad> BranchGredy(list<Ciudad> rama, list<Ciudad> sinusar, double &cota)
   			Ciudad aux = *it;
   			it = sinusar.erase(it);
   			rama.push_back(aux);
-  			aux2 = BranchGredy(rama, sinusar, cota);
-  			if(aux2.size() != 0){
+  			aux2 = BranchGredy(rama, sinusar, cota, mejor_sol);
+  			if(aux2.size() > 0){
   				res = aux2;
   			}
   			it = sinusar.emplace(it,aux);
@@ -226,7 +230,8 @@ double BranchNBound(vector<Ciudad> mapa, vector<Ciudad>& solucion)
   for(int i = 1; i < (int)mapa.size();++i)
     sinusar.push_back(mapa[i]);
   cout << cota << endl;
-  list<Ciudad> solucion_lista = BranchGredy(rama_inicial, sinusar, cota);
+  list<Ciudad> solucion_lista;
+  BranchGredy(rama_inicial, sinusar, cota, solucion_lista);
   for(list<Ciudad>::iterator it = solucion_lista.begin(); it!=solucion_lista.end();++it)
     solucion.push_back(*it);
   return DistanciaRecorrido(solucion);
