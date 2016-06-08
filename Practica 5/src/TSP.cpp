@@ -210,7 +210,7 @@ vector<City> TSP::branch_with_greedy(mypq_type prior,double media){
         prior.push(aux);
 		}
     assert(!prior.empty());
-		return bestChoice(prior);
+		return branch_with_greedy(prior,media);
   }
 }
 
